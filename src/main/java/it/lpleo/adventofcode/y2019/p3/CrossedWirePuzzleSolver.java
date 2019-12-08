@@ -1,83 +1,46 @@
 package it.lpleo.adventofcode.y2019.p3;
 
+import static java.lang.Math.abs;
+
 import it.lpleo.adventofcode.PuzzleSolver;
 import it.lpleo.adventofcode.puzzle.Puzzle;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
+import it.lpleo.adventofcode.y2019.p3.domain.Point;
+import it.lpleo.adventofcode.y2019.p3.domain.Segment;
+import it.lpleo.adventofcode.y2019.p3.service.SegmentService;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 public class CrossedWirePuzzleSolver extends PuzzleSolver {
 
-    public CrossedWirePuzzleSolver(Puzzle puzzle) {
-        super(puzzle);
-    }
+  public CrossedWirePuzzleSolver(Puzzle puzzle) {
+    super(puzzle);
+  }
 
-    @Override
-    public String solvePart1(List<String> inputList) {
-        List<VisitedPoint> visitedPoints = new ArrayList<>();
-        VisitedPoint actualPoint = new VisitedPoint(0,0);
-        visitedPoints.add(actualPoint);
-        int linenumber = 0;
-        for(String line : inputList) {
-            for(String directionStep : line.split(",")) {
-                char direction = directionStep.charAt(0);
-                int steps = Integer.parseInt(directionStep.substring(1));
-                while(steps >= 0) {
-                    actualPoint = calculateNextPoint(actualPoint,getDirectionPoint(direction));
-                    actualPoint.setVisited();
-                    visitedPoints.add(actualPoint);
-                    steps--;
-                }
-            }
-            linenumber++;
-        }
-    }
+  @Override
+  public String solvePart1(List<String> inputList) {
+    List<Segment> firstLineSegments = SegmentService.getSegments(inputList.get(0));
+    List<Segment> secondLineSegments = SegmentService.getSegments(inputList.get(1));
 
-    @Override
-    public String solvePart2(List<String> inputList) {
-        return null;
-    }
+    List<Point> crossPoint = SegmentService
+        .getCrossingPoints(firstLineSegments, secondLineSegments);
+    return getLowerDistanceFromOrigin(crossPoint) + "";
+  }
 
-    private Point getDirectionPoint(char direction) {
-        switch (direction) {
-            case 'U':
-                return new Point(0, 1);
-            case 'D':
-                return new Point(0, -1);
-            case 'L':
-                return new Point(-1, 0);
-            case 'R':
-                return new Point(1, 0);
-        }
-        throw new RuntimeException("Unknow direction " + direction);
+  private String getLowerDistanceFromOrigin(List<Point> crossPoints) {
+    crossPoints = crossPoints.subList(1, crossPoints.size());
+    Point nearestCandidate = crossPoints.get(0);
+    for (Point crossPoint : crossPoints) {
+      int oldDistance = abs(nearestCandidate.getX()) + abs(nearestCandidate.getY());
+      int newDistance = abs(crossPoint.getX()) + abs(crossPoint.getY());
+      if (newDistance < oldDistance) {
+        nearestCandidate = crossPoint;
+      }
     }
-    
-    private VisitedPoint calculateNextPoint(VisitedPoint actualPoint, Point nextCoordinate) {
-        int coordinateA = actualPoint.getCoordinateA() + nextCoordinate.getCoordinateA();
-        int coordinateB = actualPoint.getCoordinateB() + nextCoordinate.getCoordinateB();
-        return new VisitedPoint(coordinateA,coordinateB);
-    }
+    return abs(nearestCandidate.getX()) + abs(nearestCandidate.getY()) + "";
+  }
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    private static class Point {
-        private int coordinateA;
-        private int coordinateB;
-    }
 
-    @Data
-    @AllArgsConstructor
-    private static class VisitedPoint extends Point {
-        private boolean[] visited = {false, false};
-
-        public VisitedPoint(int coordinateA, int coordinateB) {
-            super(coordinateA, coordinateB);
-        }
-    }
+  @Override
+  public String solvePart2(List<String> inputList) {
+    return null;
+  }
 }
