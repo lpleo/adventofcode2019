@@ -7,6 +7,7 @@ import it.lpleo.adventofcode.y2019.p1.RocketEquationPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p2.Error1202PuzzleSolver;
 
 import it.lpleo.adventofcode.y2019.p3.CrossedWirePuzzleSolver;
+import it.lpleo.adventofcode.y2019.p4.SecureContainerPuzzleSolver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class PuzzleSolvers {
         puzzles2019.add(new RocketEquationPuzzleSolver(getRocketEquationPuzzle()));
         puzzles2019.add(new Error1202PuzzleSolver(getError1202Puzzle()));
         puzzles2019.add(new CrossedWirePuzzleSolver(getCrossedWirePuzzle()));
+        puzzles2019.add(new SecureContainerPuzzleSolver(getSecureContainerPuzzle()));
         return puzzles2019;
     }
 
@@ -44,5 +46,8 @@ public class PuzzleSolvers {
     }
     public static Puzzle getCrossedWirePuzzle() {
         return new Puzzle(3, 2019, "CrossedWire");
+    }
+    public static Puzzle getSecureContainerPuzzle() {
+        return new Puzzle(4, 2019, "SecureContainer");
     }
 }
