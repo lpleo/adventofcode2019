@@ -20,13 +20,37 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
     List<Segment> firstLineSegments = SegmentService.getSegments(inputList.get(0));
     List<Segment> secondLineSegments = SegmentService.getSegments(inputList.get(1));
 
-    List<Point> crossPoint = SegmentService
+    List<Point> crossingPoints = SegmentService
         .getCrossingPoints(firstLineSegments, secondLineSegments);
-    return getLowerDistanceFromOrigin(crossPoint) + "";
+    crossingPoints = crossingPoints.subList(1, crossingPoints.size());
+    
+    return getLowerDistanceFromOrigin(crossingPoints) + "";
+  }
+
+  @Override
+  public String solvePart2(List<String> inputList) {
+
+    List<Segment> firstLineSegments = SegmentService.getSegments(inputList.get(0));
+    List<Segment> secondLineSegments = SegmentService.getSegments(inputList.get(1));
+
+    List<Point> crossingPoints = SegmentService
+        .getCrossingPoints(firstLineSegments, secondLineSegments);
+    crossingPoints = crossingPoints.subList(1, crossingPoints.size());
+    
+    int lowerPath = -1;
+    for (Point crossPoint : crossingPoints) {
+      int pathLength1 = SegmentService.getPathLengthToPoint(firstLineSegments, crossPoint);
+      int pathLength2 = SegmentService.getPathLengthToPoint(secondLineSegments, crossPoint);
+      int totalPath = pathLength1 + pathLength2;
+      if (totalPath < lowerPath || lowerPath == -1) {
+        lowerPath = totalPath;
+      }
+    }
+
+    return lowerPath + "";
   }
 
   private String getLowerDistanceFromOrigin(List<Point> crossPoints) {
-    crossPoints = crossPoints.subList(1, crossPoints.size());
     Point nearestCandidate = crossPoints.get(0);
     for (Point crossPoint : crossPoints) {
       int oldDistance = abs(nearestCandidate.getX()) + abs(nearestCandidate.getY());
@@ -36,11 +60,5 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
       }
     }
     return abs(nearestCandidate.getX()) + abs(nearestCandidate.getY()) + "";
-  }
-
-
-  @Override
-  public String solvePart2(List<String> inputList) {
-    return null;
   }
 }

@@ -11,4 +11,5 @@ public class Segment {
 
   private Point a;
   private Point b;
+  private int length;
 }

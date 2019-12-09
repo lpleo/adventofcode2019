@@ -1,5 +1,8 @@
 package it.lpleo.adventofcode.y2019.p3.service;
 
+import static java.lang.Math.*;
+import static java.lang.Math.max;
+
 import it.lpleo.adventofcode.y2019.p3.domain.Point;
 import it.lpleo.adventofcode.y2019.p3.domain.Segment;
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class SegmentService {
     Point endpoint = startingPoint.clone();
     endpoint.sum(temporaryPoint);
 
-    return Segment.builder().a(startingPoint).b(endpoint).build();
+    return Segment.builder().a(startingPoint).b(endpoint).length(length).build();
   }
 
 
@@ -55,20 +58,66 @@ public class SegmentService {
     return null;
   }
 
+  public static boolean pointBelongToSegment(Segment segment, Point point) {
+    Point a = segment.getA();
+    Point b = segment.getB();
+    if (parallelXSegment(segment)) {
+      if (point.getY() == a.getY()) {
+        return (max(a.getX(), b.getX()) >= point.getX() && point.getX() >= min(a.getX(), b.getX()));
+      }
+    }
+
+    if (parallelYSegment(segment)) {
+      if (point.getX() == a.getX()) {
+        return (max(a.getY(), b.getY()) >= point.getY() && point.getY() >= min(a.getY(), b.getY()));
+      }
+    }
+    return false;
+  }
+
+  public static int getDistanceFromAOfPoint(Segment segment, Point point) {
+    if (pointBelongToSegment(segment, point)) {
+      if (parallelXSegment(segment)) {
+        return abs(segment.getA().getX() - point.getX());
+      }
+      if (parallelYSegment(segment)) {
+        return abs(segment.getA().getY() - point.getY());
+      }
+    }
+    throw new RuntimeException("Point does not belong at segment");
+  }
+
+  public static int getPathLengthToPoint(List<Segment> pathSegments, Point point) {
+    int pathLength = 0;
+    for (Segment segment : pathSegments) {
+      if (SegmentService.pointBelongToSegment(segment, point)) {
+        pathLength += SegmentService.getDistanceFromAOfPoint(segment, point);
+        break;
+      }
+      pathLength += segment.getLength();
+    }
+    return pathLength;
+  }
+
   private static Point calculateIntersection(Segment parrallelXsegment, Segment parallelYSegment) {
-    int xa1 = Math.min(parrallelXsegment.getA().getX(), parrallelXsegment.getB().getX());
-    int xb1 = Math.max(parrallelXsegment.getA().getX(), parrallelXsegment.getB().getX());
-    int x2 = parallelYSegment.getA().getX();
+    Point apx = parrallelXsegment.getA();
+    Point bpx = parrallelXsegment.getB();
+    Point apy = parallelYSegment.getA();
+    Point bpy = parallelYSegment.getB();
 
-    int ya2 = Math.min(parallelYSegment.getA().getY(), parallelYSegment.getB().getY());
-    int yb2 = Math.max(parallelYSegment.getA().getY(), parallelYSegment.getB().getY());
-    int y1 = parrallelXsegment.getA().getY();
+    int xapx = min(apx.getX(), bpx.getX());
+    int xbpx = max(apx.getX(), bpx.getX());
+    int xapy = apy.getX();
 
-    boolean betweenX = (xa1 <= x2 && x2 <= xb1);
-    boolean betweenY = (ya2 <= y1 && y1 <= yb2);
+    int yapy = min(apy.getY(), bpy.getY());
+    int ybpy = max(apy.getY(), bpy.getY());
+    int yapx = apx.getY();
+
+    boolean betweenX = (xapx <= xapy && xapy <= xbpx);
+    boolean betweenY = (yapy <= yapx && yapx <= ybpy);
 
     if (betweenX && betweenY) {
-      return new Point(x2, y1);
+      return new Point(xapy, yapx);
     }
 
     return null;
