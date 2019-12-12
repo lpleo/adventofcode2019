@@ -5,8 +5,9 @@ import static java.util.Arrays.asList;
 
 import it.lpleo.adventofcode.PuzzleSolver;
 import it.lpleo.adventofcode.puzzle.Puzzle;
-import it.lpleo.adventofcode.y2019.p2.domain.OpMove;
+import it.lpleo.adventofcode.string.InputManipulator;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
+import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachineRunner;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.ErrorHandler;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.MultiplicationHandler;
@@ -25,16 +26,9 @@ public class Error1202PuzzleSolver extends PuzzleSolver {
 
   @Override
   public String solvePart1(List<String> inputList) {
-    VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(createIntegerArray(inputList));
-
-    while (vonNeumannMachine.getActualValue() != 99) {
-      for (MoveHandler moveHandler : handlers) {
-        if (moveHandler.shouldHandle(vonNeumannMachine.getActualValue())) {
-          moveHandler.move(vonNeumannMachine);
-          break;
-        }
-      }
-    }
+    VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
+        InputManipulator.convertInIntegersArray(inputList));
+    VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
     return vonNeumannMachine.getValue(0) + "";
   }
 
@@ -53,16 +47,6 @@ public class Error1202PuzzleSolver extends PuzzleSolver {
       }
     }
     throw new RuntimeException("No result found");
-  }
-
-  private static int[] createIntegerArray(List<String> inputList) {
-    int[] result = new int[inputList.size()];
-    int i = 0;
-    for (String splitted : inputList) {
-      result[i] = parseInt(splitted);
-      i -= -1;
-    }
-    return result;
   }
 
 }

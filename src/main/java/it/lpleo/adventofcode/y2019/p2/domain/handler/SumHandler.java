@@ -16,6 +16,6 @@ public class SumHandler implements MoveHandler {
     int operand2 = vonNeumannMachine.getReferencedValue(cursor + 2);
     int destination = vonNeumannMachine.getValue(cursor + 3);
     vonNeumannMachine.write(destination, (operand1 + operand2));
-    vonNeumannMachine.move(cursor+4);
+    vonNeumannMachine.move(vonNeumannMachine.getCursor() + 4);
   }
 }
