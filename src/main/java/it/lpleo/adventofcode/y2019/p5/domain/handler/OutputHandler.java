@@ -1,5 +1,7 @@
 package it.lpleo.adventofcode.y2019.p5.domain.handler;
 
+import static it.lpleo.adventofcode.y2019.p5.service.VonNeumannMachineService.extractParameter;
+
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 
@@ -13,7 +15,7 @@ public class OutputHandler implements MoveHandler {
   @Override
   public void move(VonNeumannMachine vonNeumannMachine) {
     int cursor = vonNeumannMachine.getCursor();
-    System.out.println("RESULT TEST: " + vonNeumannMachine.getReferencedValue(cursor + 1));
+    System.out.println("RESULT TEST: " + extractParameter(vonNeumannMachine, 0));
     vonNeumannMachine.move(cursor + 2);
   }
 }

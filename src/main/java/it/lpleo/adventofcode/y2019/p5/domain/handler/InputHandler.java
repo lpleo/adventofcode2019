@@ -2,6 +2,7 @@ package it.lpleo.adventofcode.y2019.p5.domain.handler;
 
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class InputHandler implements MoveHandler {
@@ -12,8 +13,8 @@ public class InputHandler implements MoveHandler {
     this.scanner = new Scanner(System.in);
   }
   
-  public InputHandler(Scanner scanner) {
-    this.scanner = scanner;
+  public InputHandler(InputStream inputStream) {
+    this.scanner = new Scanner(inputStream);
   }
   
   @Override
@@ -26,7 +27,6 @@ public class InputHandler implements MoveHandler {
     int cursor = vonNeumannMachine.getCursor();
     int position = vonNeumannMachine.getValue(cursor + 1);
     System.out.println("Insert value: ");
-    Scanner scanner = new Scanner(System.in);
     vonNeumannMachine.write(position, scanner.nextInt());
     vonNeumannMachine.move(cursor + 2);
   }

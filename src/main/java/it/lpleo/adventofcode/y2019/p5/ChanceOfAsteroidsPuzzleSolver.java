@@ -17,7 +17,8 @@ import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
-import java.util.ArrayList;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
@@ -30,12 +31,12 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
     pt1handlers = asList(
         new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(),
+        new InputHandler(new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8))),
         new OutputHandler(),
         new ErrorHandler());
     pt2handlers = asList(new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(),
+        new InputHandler(new ByteArrayInputStream("5".getBytes(StandardCharsets.UTF_8))),
         new OutputHandler(), new EqualsHandler(), new JumpIfFalseHandler(), new JumpIfTrueHandler(),
         new LessThanHandler(), new ErrorHandler());
   }
@@ -55,41 +56,6 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
     VonNeumannMachineRunner.run(vonNeumannMachine, pt2handlers);
     return "See over";
   }
-
-  /*public static void main(String[] args) {
-    new ChanceOfAsteroidsPuzzleSolver(new Puzzle(1, 1, ""))
-        .solvePart2(asList("3", "9", "8", "9", "10", "9", "4", "9", "99", "-1", "8"));
-  }*/
-
-  /*public static void main(String[] args) {
-    new ChanceOfAsteroidsPuzzleSolver(new Puzzle(1, 1, ""))
-        .solvePart2(asList("3", "9", "7", "9", "10", "9", "4", "9", "99", "-1", "8"));
-  }*/
-
-  /*public static void main(String[] args) {
-    new ChanceOfAsteroidsPuzzleSolver(new Puzzle(1, 1, ""))
-        .solvePart2(getStringList(asList(3, 3, 1108, -1, 8, 3, 4, 3, 997)));
-  }*/
-
-  /*public static void main(String[] args) {
-    new ChanceOfAsteroidsPuzzleSolver(new Puzzle(1, 1, ""))
-        .solvePart2(getStringList(asList(3, 3, 1107, -1, 8, 3, 4, 3, 99)));
-  }*/
-  
-  /*public static void main(String[] args) {
-    new ChanceOfAsteroidsPuzzleSolver(new Puzzle(1, 1, ""))
-        .solvePart2(getStringList(asList(3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
-            1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
-            999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99)));
-  }
-
-  private static List<String> getStringList(List<Integer> input) {
-    List<String> result = new ArrayList<>();
-    for (Integer i : input) {
-      result.add(i.toString());
-    }
-    return result;
-  }*/
 }
 
   
