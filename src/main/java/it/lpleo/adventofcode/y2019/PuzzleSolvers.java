@@ -9,6 +9,7 @@ import it.lpleo.adventofcode.y2019.p2.Error1202PuzzleSolver;
 import it.lpleo.adventofcode.y2019.p3.CrossedWirePuzzleSolver;
 import it.lpleo.adventofcode.y2019.p4.SecureContainerPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p5.ChanceOfAsteroidsPuzzleSolver;
+import it.lpleo.adventofcode.y2019.p6.UniversalOrbitMapPuzzleSolver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class PuzzleSolvers {
     puzzles2019.add(new CrossedWirePuzzleSolver(getCrossedWirePuzzle()));
     puzzles2019.add(new SecureContainerPuzzleSolver(getSecureContainerPuzzle()));
     puzzles2019.add(new ChanceOfAsteroidsPuzzleSolver(getChanceOfAsteroidsPuzzle()));
+    puzzles2019.add(new UniversalOrbitMapPuzzleSolver(getUniversalOrbitMapPuzzle()));
     return puzzles2019;
   }
 
@@ -60,7 +62,11 @@ public class PuzzleSolvers {
     return new Puzzle(4, 2019, "SecureContainer");
   }
 
-  private static Puzzle getChanceOfAsteroidsPuzzle() {
+  public static Puzzle getChanceOfAsteroidsPuzzle() {
     return new Puzzle(5, 2019, "ChanceOfAsteroids");
+  }
+
+  public static Puzzle getUniversalOrbitMapPuzzle() {
+    return new Puzzle(6, 2019, "UniversalOrbitMap");
   }
 }
