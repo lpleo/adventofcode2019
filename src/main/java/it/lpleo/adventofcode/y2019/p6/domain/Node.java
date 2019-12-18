@@ -9,6 +9,7 @@ public class Node {
 
   private String data;
   private List<Node> children;
+  private Node parent;
 
   public Node(String data) {
     this.data = data;

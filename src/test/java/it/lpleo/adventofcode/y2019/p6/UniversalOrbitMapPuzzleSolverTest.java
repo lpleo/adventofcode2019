@@ -13,6 +13,9 @@ public class UniversalOrbitMapPuzzleSolverTest {
   private List<String> pt1 = asList(
       "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L".split("\n"));
 
+  private List<String> pt2 = asList(
+      "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN".split("\n"));
+
   @Test
   public void solvePart1() {
     UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver(
@@ -24,5 +27,10 @@ public class UniversalOrbitMapPuzzleSolverTest {
 
   @Test
   public void solvePart2() {
+    UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver(
+        PuzzleSolvers.getUniversalOrbitMapPuzzle());
+
+    String result = puzzleSolver.solvePart2(pt2);
+    assertThat(result, Matchers.is("4"));
   }
 }
