@@ -1,6 +1,7 @@
 package it.lpleo.adventofcode.y2019.p5;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 
 import it.lpleo.adventofcode.PuzzleSolver;
 import it.lpleo.adventofcode.puzzle.Puzzle;
@@ -19,6 +20,8 @@ import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
@@ -31,12 +34,12 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
     pt1handlers = asList(
         new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8))),
+        new InputHandler(new LinkedList<>(singletonList(1))),
         new OutputHandler(),
         new ErrorHandler());
     pt2handlers = asList(new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(new ByteArrayInputStream("5".getBytes(StandardCharsets.UTF_8))),
+        new InputHandler(new LinkedList<>(singletonList(5))),
         new OutputHandler(), new EqualsHandler(), new JumpIfFalseHandler(), new JumpIfTrueHandler(),
         new LessThanHandler(), new ErrorHandler());
   }

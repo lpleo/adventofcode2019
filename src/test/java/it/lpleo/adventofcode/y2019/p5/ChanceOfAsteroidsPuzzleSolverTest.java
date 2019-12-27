@@ -1,6 +1,7 @@
 package it.lpleo.adventofcode.y2019.p5;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,11 +17,9 @@ import it.lpleo.adventofcode.y2019.p5.domain.handler.LessThanHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -44,11 +43,11 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
   @Test
   public void solvePart1InputOutputTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new int[]{3, 0, 4, 0, 99});
-    InputStream stream = new ByteArrayInputStream("6".getBytes(StandardCharsets.UTF_8));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(6));
     VonNeumannMachineRunner.run(vonNeumannMachine,
-        asList(new InputHandler(stream), new OutputHandler(), new ErrorHandler()));
+        asList(new InputHandler(fifoQueue), new OutputHandler(fifoQueue), new ErrorHandler()));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 6"));
+    assertThat(fifoQueue.poll(), is(6));
   }
 
   @Test
@@ -65,10 +64,10 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new int[]{3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8});
 
-    InputStream stream = new ByteArrayInputStream("8".getBytes(StandardCharsets.UTF_8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(stream));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(8));
+    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 1"));
+    assertThat(fifoQueue.poll(), is(1));
   }
 
   @Test
@@ -76,10 +75,10 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new int[]{3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8});
 
-    InputStream stream = new ByteArrayInputStream("5".getBytes(StandardCharsets.UTF_8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(stream));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(5));
+    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 1"));
+    assertThat(fifoQueue.poll(), is(1));
   }
 
   @Test
@@ -87,10 +86,10 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new int[]{3, 3, 1108, -1, 8, 3, 4, 3, 99});
 
-    InputStream stream = new ByteArrayInputStream("8".getBytes(StandardCharsets.UTF_8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(stream));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(8));
+    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 1"));
+    assertThat(fifoQueue.poll(), is(1));
   }
 
   @Test
@@ -98,10 +97,10 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new int[]{3, 3, 1107, -1, 8, 3, 4, 3, 99});
 
-    InputStream stream = new ByteArrayInputStream("9".getBytes(StandardCharsets.UTF_8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(stream));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(9));
+    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 0"));
+    assertThat(fifoQueue.poll(), is(0));
   }
 
   @Test
@@ -111,18 +110,19 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
             1106, 0, 36, 98, 0, 0, 1002, 21, 125, 20, 4, 20, 1105, 1, 46, 104,
             999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99});
 
-    InputStream stream = new ByteArrayInputStream("7".getBytes(StandardCharsets.UTF_8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(stream));
+    LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(7));
+    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
-    assertThat(outContent.toString().split("\n")[1].trim(), is("RESULT TEST: 999"));
+    assertThat(fifoQueue.poll(), is(999));
   }
 
 
-  private List<MoveHandler> getPT2Handlers(InputStream inputStream) {
+  private List<MoveHandler> getPT2Handlers(LinkedList<Integer> fifoqueue) {
     return asList(new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(inputStream),
-        new OutputHandler(), new EqualsHandler(), new JumpIfFalseHandler(), new JumpIfTrueHandler(),
+        new InputHandler(fifoqueue),
+        new OutputHandler(fifoqueue), new EqualsHandler(), new JumpIfFalseHandler(),
+        new JumpIfTrueHandler(),
         new LessThanHandler(), new ErrorHandler());
   }
 

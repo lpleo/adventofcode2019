@@ -1,5 +1,9 @@
 package it.lpleo.adventofcode.y2019.p7;
 
+import static it.lpleo.adventofcode.string.InputManipulator.convertInIntegersArray;
+import static java.lang.Character.getNumericValue;
+import static java.lang.Integer.parseInt;
+import static java.nio.charset.StandardCharsets.*;
 import static java.util.Arrays.asList;
 
 import it.lpleo.adventofcode.PuzzleSolver;
@@ -21,7 +25,9 @@ import it.lpleo.adventofcode.y2019.p7.service.MathService;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
 
@@ -39,40 +45,59 @@ public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
     List<String> permutations = MathService.permutation("01234");
 
     int max = -1;
-    String sequence = "";
     for (String permutation : permutations) {
-      int oldOutputValue = 0;
-      for (char inputValue : permutation.toCharArray()) {
-        List<Integer> results = new ArrayList<>();
-        List<MoveHandler> newMoveHandlers = createHandlers(inputValue, oldOutputValue, results);
-        List<String> inputCopyList = InputManipulator.copy(inputList);
-
-        VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
-            InputManipulator.convertInIntegersArray(inputCopyList));
-        VonNeumannMachineRunner.run(vonNeumannMachine, newMoveHandlers);
-
-        oldOutputValue = results.get(0);
-      }
-
-      if (oldOutputValue > max) {
-        sequence = permutation;
-        max = oldOutputValue;
+      int outputValue = extractOutputValue(inputList, permutation);
+      if (outputValue > max) {
+        max = outputValue;
       }
     }
     return max + "";
   }
 
-  private List<MoveHandler> createHandlers(char inputValue, int oldOutput, List<Integer> results) {
-    List<MoveHandler> newMoveHandlers = new ArrayList<>(pt1Handlers);
-    newMoveHandlers.add(new InputHandler(
-        new ByteArrayInputStream(
-            (inputValue + "\n" + oldOutput + "").getBytes(StandardCharsets.UTF_8))));
-    newMoveHandlers.add(new OutputHandler(results));
-    return newMoveHandlers;
-  }
-
   @Override
   public String solvePart2(List<String> inputList) {
-    return null;
+    List<String> permutations = MathService.permutation("56789");
+
+    int max = -1;
+    String rperm = "";
+    for (String permutation : permutations) {
+      int outputValue = extractOutputValue(inputList, permutation);
+      if (outputValue > max) {
+        rperm = permutation;
+        max = outputValue;
+      }
+    }
+    System.out.println(rperm);
+    return max + "";
+  }
+
+  private int extractOutputValue(List<String> inputList, String permutation) {
+    String amplificatorsInput = "0";
+    for (char phaseSetting : permutation.toCharArray()) {
+      Queue<Integer> fifoQueue = new LinkedList<>();
+      fifoQueue.add(getNumericValue(phaseSetting));
+      fifoQueue.add(parseInt(amplificatorsInput.trim()));
+      List<MoveHandler> newMoveHandlers = createHandlers(fifoQueue);
+      List<String> inputCopyList = InputManipulator.copy(inputList);
+
+      VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
+          convertInIntegersArray(inputCopyList));
+      VonNeumannMachineRunner.run(vonNeumannMachine, newMoveHandlers);
+
+      StringBuilder stringBuilder = new StringBuilder();
+      for (Integer result : fifoQueue) {
+        stringBuilder.append(result);
+        stringBuilder.append("\n");
+      }
+      amplificatorsInput = stringBuilder.toString();
+    }
+    return parseInt(amplificatorsInput.trim());
+  }
+
+  private List<MoveHandler> createHandlers(Queue<Integer> fifoQueue) {
+    List<MoveHandler> newMoveHandlers = new ArrayList<>(pt1Handlers);
+    newMoveHandlers.add(new InputHandler(fifoQueue));
+    newMoveHandlers.add(new OutputHandler(fifoQueue));
+    return newMoveHandlers;
   }
 }

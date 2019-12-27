@@ -5,18 +5,19 @@ import static it.lpleo.adventofcode.y2019.p5.service.VonNeumannMachineService.ex
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 import java.util.List;
+import java.util.Queue;
 
 public class OutputHandler implements MoveHandler {
 
   private static final int MOVE_VALUE = 4;
-  private List<Integer> output;
+  private Queue<Integer> fifoQueue;
 
   public OutputHandler() {
-    this.output = null;
+    this.fifoQueue = null;
   }
 
-  public OutputHandler(List<Integer> outputResult) {
-    this.output = outputResult;
+  public OutputHandler(Queue<Integer> fifoQueue) {
+    this.fifoQueue = fifoQueue;
   }
 
   @Override
@@ -27,12 +28,17 @@ public class OutputHandler implements MoveHandler {
   @Override
   public void move(VonNeumannMachine vonNeumannMachine) {
     int cursor = vonNeumannMachine.getCursor();
-    if (output != null) {
-      output.add(extractParameter(vonNeumannMachine, 0));
-    } else {
-      System.out.println("RESULT TEST: " + extractParameter(vonNeumannMachine, 0));
-    }
+    writeValue(extractParameter(vonNeumannMachine, 0));
     vonNeumannMachine.move(cursor + 2);
+  }
+
+  private void writeValue(int value) {
+    if (fifoQueue != null) {
+      fifoQueue.add(value);
+      return;
+    }
+
+    System.out.println("RESULT TEST: " + value);
   }
 
   @Override
