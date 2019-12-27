@@ -7,6 +7,8 @@ import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 
 public class JumpIfFalseHandler implements MoveHandler {
 
+  private static final int MOVE_VALUE = 6;
+
   @Override
   public boolean shouldHandle(int moveValue) {
     return moveValue == 6;
@@ -21,5 +23,10 @@ public class JumpIfFalseHandler implements MoveHandler {
       return;
     }
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + 3);
+  }
+
+  @Override
+  public int getIndex() {
+    return MOVE_VALUE;
   }
 }

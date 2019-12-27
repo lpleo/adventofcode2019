@@ -5,6 +5,8 @@ import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 
 public class ErrorHandler implements MoveHandler {
 
+  private static final int MOVE_VALUE = Integer.MAX_VALUE;
+
   @Override
   public boolean shouldHandle(int moveValue) {
     return true;
@@ -13,5 +15,10 @@ public class ErrorHandler implements MoveHandler {
   @Override
   public void move(VonNeumannMachine vonNeumannMachine) {
     throw new RuntimeException("Should not reach here");
+  }
+
+  @Override
+  public int getIndex() {
+    return MOVE_VALUE;
   }
 }

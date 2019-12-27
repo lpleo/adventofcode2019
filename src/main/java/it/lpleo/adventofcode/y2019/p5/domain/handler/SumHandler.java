@@ -7,9 +7,11 @@ import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 
 public class SumHandler implements MoveHandler {
 
+  private static final int MOVE_VALUE = 1;
+
   @Override
   public boolean shouldHandle(int moveValue) {
-    return moveValue == 1;
+    return moveValue == MOVE_VALUE;
   }
 
   @Override
@@ -21,5 +23,8 @@ public class SumHandler implements MoveHandler {
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + 4);
   }
 
-
+  @Override
+  public int getIndex() {
+    return MOVE_VALUE;
+  }
 }

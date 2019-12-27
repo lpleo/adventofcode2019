@@ -24,4 +24,20 @@ public class InputManipulator {
     }
     return result;
   }
+
+  public static List<String> convertInStringList(List<Integer> integerList) {
+    List<String> result = new ArrayList<>();
+    for (Integer integer : integerList) {
+      result.add(integer + "");
+    }
+    return result;
+  }
+
+  public static List<String> copy(List<String> sourceList) {
+    List<String> result = new ArrayList<>();
+    for (String source : sourceList) {
+      result.add(String.copyValueOf(source.toCharArray()));
+    }
+    return result;
+  }
 }

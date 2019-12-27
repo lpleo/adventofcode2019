@@ -7,4 +7,6 @@ public interface MoveHandler {
   boolean shouldHandle(int moveValue);
 
   void move(VonNeumannMachine vonNeumannMachine);
+
+  int getIndex();
 }

@@ -13,4 +13,9 @@ public class ErrorHandler implements MoveHandler {
   public void move(VonNeumannMachine vonNeumannMachine) {
     throw new RuntimeException("Should not reach here");
   }
+
+  @Override
+  public int getIndex() {
+    return Integer.MAX_VALUE;
+  }
 }

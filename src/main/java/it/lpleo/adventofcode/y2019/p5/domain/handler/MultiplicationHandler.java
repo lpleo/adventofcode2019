@@ -7,9 +7,11 @@ import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
 
 public class MultiplicationHandler implements MoveHandler {
 
+  private static final int MOVE_VALUE = 2;
+
   @Override
   public boolean shouldHandle(int moveValue) {
-    return moveValue == 2;
+    return moveValue == MOVE_VALUE;
   }
 
   @Override
@@ -19,5 +21,10 @@ public class MultiplicationHandler implements MoveHandler {
     int result = vonNeumannMachine.getValue(vonNeumannMachine.getCursor() + 3);
     vonNeumannMachine.write(result, parameter1 * parameter2);
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + 4);
+  }
+
+  @Override
+  public int getIndex() {
+    return MOVE_VALUE;
   }
 }
