@@ -105,22 +105,34 @@ public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
 
     VonNeumannMachine runningVonNeumannMachine = vonNeumannMachineList.get(0);
     runningVonNeumannMachine.addInputValue(0);
-    int lastOutput = 0;
-    boolean firstMachineEnd = vonNeumannMachineList.get(0).endProgram();
-    while (!firstMachineEnd) {
+    Integer lastOutput = 0;
+    boolean lastMachineEnd = vonNeumannMachineList.get(vonNeumannMachineList.size() - 1)
+        .endProgram();
+    while (!lastMachineEnd) {
       StoppableVonNeumannMachineRunner
           .runStoppableMachine(runningVonNeumannMachine, newMoveHandlers);
 
-      firstMachineEnd = vonNeumannMachineList.get(0).endProgram();
-      if (!firstMachineEnd) {
-        lastOutput = runningVonNeumannMachine.getLastOutput();
+      lastMachineEnd = vonNeumannMachineList.get(vonNeumannMachineList.size() - 1)
+          .endProgram();
+      if (!lastMachineEnd) {
+        lastOutput = runningVonNeumannMachine.getLastOutputIfExist();
         runningVonNeumannMachine = selectNextMachine(runningVonNeumannMachine,
             vonNeumannMachineList);
-        runningVonNeumannMachine.addInputValue(lastOutput);
+        if (lastOutput != null) {
+          runningVonNeumannMachine.addInputValue(lastOutput);
+        }
       }
     }
 
-    return lastOutput;
+    Integer result = 0;
+
+    try {
+      result = vonNeumannMachineList.get(0).getNextInput();
+    } catch (Exception e) {
+      result = vonNeumannMachineList.get(vonNeumannMachineList.size() - 1).getLastOutputIfExist();
+    }
+
+    return result;
   }
 
   private VonNeumannMachine selectNextMachine(VonNeumannMachine runningVonNeumannMachine,

@@ -63,7 +63,10 @@ public class VonNeumannMachine {
     return this.inputValues.poll();
   }
 
-  public int getLastOutput() {
-    return this.outputValues.poll();
+  public Integer getLastOutputIfExist() {
+    if (this.outputValues.size() > 0) {
+      return this.outputValues.poll();
+    }
+    return null;
   }
 }
