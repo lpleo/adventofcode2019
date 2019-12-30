@@ -6,9 +6,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachineRunner;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.ErrorHandler;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
+import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
+import it.lpleo.adventofcode.y2019.p5.domain.handler.MoveHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfFalseHandler;
@@ -17,6 +16,7 @@ import it.lpleo.adventofcode.y2019.p5.domain.handler.LessThanHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
+import it.lpleo.adventofcode.y2019.p7.StoppableVonNeumannMachineRunner;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -44,7 +44,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
   public void solvePart1InputOutputTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new int[]{3, 0, 4, 0, 99});
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(6));
-    VonNeumannMachineRunner.run(vonNeumannMachine,
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine,
         asList(new InputHandler(fifoQueue), new OutputHandler(fifoQueue), new ErrorHandler()));
 
     assertThat(fifoQueue.poll(), is(6));
@@ -53,7 +53,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
   @Test
   public void solvePart1ParameterImmediateModeTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new int[]{1002, 4, 3, 4, 33});
-    VonNeumannMachineRunner.run(vonNeumannMachine,
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine,
         asList(new MultiplicationHandler(), new ErrorHandler()));
 
     assertThat(vonNeumannMachine.getValue(4), is(99));
@@ -65,7 +65,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new int[]{3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8});
 
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
     assertThat(fifoQueue.poll(), is(1));
   }
@@ -76,7 +76,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new int[]{3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8});
 
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(5));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
     assertThat(fifoQueue.poll(), is(1));
   }
@@ -87,7 +87,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new int[]{3, 3, 1108, -1, 8, 3, 4, 3, 99});
 
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(8));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
     assertThat(fifoQueue.poll(), is(1));
   }
@@ -98,7 +98,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new int[]{3, 3, 1107, -1, 8, 3, 4, 3, 99});
 
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(9));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
     assertThat(fifoQueue.poll(), is(0));
   }
@@ -111,7 +111,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
             999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99});
 
     LinkedList<Integer> fifoQueue = new LinkedList<>(singletonList(7));
-    VonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
 
     assertThat(fifoQueue.poll(), is(999));
   }

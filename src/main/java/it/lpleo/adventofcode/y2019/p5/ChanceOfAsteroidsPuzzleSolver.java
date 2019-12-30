@@ -7,20 +7,17 @@ import it.lpleo.adventofcode.PuzzleSolver;
 import it.lpleo.adventofcode.puzzle.Puzzle;
 import it.lpleo.adventofcode.string.InputManipulator;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachineRunner;
+import it.lpleo.adventofcode.y2019.p5.domain.handler.MoveHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
+import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfFalseHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfTrueHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.LessThanHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
+import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
+import it.lpleo.adventofcode.y2019.p7.StoppableVonNeumannMachineRunner;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
   public String solvePart1(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         InputManipulator.convertInIntegersArray(inputList));
-    VonNeumannMachineRunner.run(vonNeumannMachine, pt1handlers);
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, pt1handlers);
     return "See over";
   }
 
@@ -56,7 +53,7 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
   public String solvePart2(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         InputManipulator.convertInIntegersArray(inputList));
-    VonNeumannMachineRunner.run(vonNeumannMachine, pt2handlers);
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, pt2handlers);
     return "See over";
   }
 }

@@ -3,7 +3,8 @@ package it.lpleo.adventofcode.y2019.p5.domain.handler;
 import static it.lpleo.adventofcode.y2019.p5.service.VonNeumannMachineService.extractParameter;
 
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
+import it.lpleo.adventofcode.y2019.p5.domain.HandlerOutput;
+
 
 public class JumpIfFalseHandler implements MoveHandler {
 
@@ -15,14 +16,15 @@ public class JumpIfFalseHandler implements MoveHandler {
   }
 
   @Override
-  public void move(VonNeumannMachine vonNeumannMachine) {
+  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
     int parameter1 = extractParameter(vonNeumannMachine, 0);
     if(parameter1 == 0) {
       int parameter2 = extractParameter(vonNeumannMachine, 1);
       vonNeumannMachine.move(parameter2);
-      return;
+      return HandlerOutput.builder().result(1).build();
     }
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + 3);
+    return HandlerOutput.builder().result(0).build();
   }
 
   @Override

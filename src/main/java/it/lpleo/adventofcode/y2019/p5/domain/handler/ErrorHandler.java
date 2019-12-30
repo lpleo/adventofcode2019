@@ -1,7 +1,7 @@
 package it.lpleo.adventofcode.y2019.p5.domain.handler;
 
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
+import it.lpleo.adventofcode.y2019.p5.domain.HandlerOutput;
 
 public class ErrorHandler implements MoveHandler {
 
@@ -13,7 +13,7 @@ public class ErrorHandler implements MoveHandler {
   }
 
   @Override
-  public void move(VonNeumannMachine vonNeumannMachine) {
+  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
     throw new RuntimeException("Should not reach here");
   }
 
