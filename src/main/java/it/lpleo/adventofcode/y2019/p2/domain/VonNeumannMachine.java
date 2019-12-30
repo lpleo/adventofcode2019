@@ -51,8 +51,10 @@ public class VonNeumannMachine {
     return this.getActualValue() == 99;
   }
 
-  public void addInputValue(int inputValue) {
-    this.inputValues.add(inputValue);
+  public void addInputValue(Integer inputValue) {
+    if (inputValue != null) {
+      this.inputValues.add(inputValue);
+    }
   }
 
   public void addOutputValue(int value) {
