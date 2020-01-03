@@ -25,7 +25,15 @@ public class InputManipulator {
     return result;
   }
 
-  public static List<String> convertInStringList(List<Integer> integerList) {
+  public static List<String> convertStringInStringsList(String input) {
+    List<String> result = new ArrayList<>();
+    for (char letter : input.toCharArray()) {
+      result.add(letter + "");
+    }
+    return result;
+  }
+
+  public static List<String> convertIntegerListInStringList(List<Integer> integerList) {
     List<String> result = new ArrayList<>();
     for (Integer integer : integerList) {
       result.add(integer + "");

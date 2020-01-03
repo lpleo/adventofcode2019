@@ -11,6 +11,7 @@ import it.lpleo.adventofcode.y2019.p4.SecureContainerPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p5.ChanceOfAsteroidsPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p6.UniversalOrbitMapPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p7.AmplificationCircuitPuzzleSolver;
+import it.lpleo.adventofcode.y2019.p8.SpaceImageFormatPuzzleSolver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class PuzzleSolvers {
     puzzles2019.add(new ChanceOfAsteroidsPuzzleSolver(getChanceOfAsteroidsPuzzle()));
     puzzles2019.add(new UniversalOrbitMapPuzzleSolver(getUniversalOrbitMapPuzzle()));
     puzzles2019.add(new AmplificationCircuitPuzzleSolver(getAmplificationCircuitPuzzle()));
+    puzzles2019.add(new SpaceImageFormatPuzzleSolver(getSpaceImageFormatPuzzle()));
     return puzzles2019;
   }
 
@@ -74,5 +76,9 @@ public class PuzzleSolvers {
 
   public static Puzzle getAmplificationCircuitPuzzle() {
     return new Puzzle(7, 2019, "AmplificationCircuit");
+  }
+
+  public static Puzzle getSpaceImageFormatPuzzle() {
+    return new Puzzle(8, 2019, "SpaceImageFormat");
   }
 }
