@@ -5,9 +5,9 @@ import it.lpleo.adventofcode.y2019.p5.domain.HandlerOutput;
 
 public interface MoveHandler {
 
-  boolean shouldHandle(int moveValue);
+  boolean shouldHandle(long moveValue);
 
   HandlerOutput move(VonNeumannMachine vonNeumannMachine);
 
-  int getIndex();
+  long getIndex();
 }

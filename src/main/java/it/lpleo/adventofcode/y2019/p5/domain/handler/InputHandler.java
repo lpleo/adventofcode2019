@@ -7,40 +7,40 @@ import java.util.Scanner;
 
 public class InputHandler implements MoveHandler {
 
-  private static final int MOVE_VALUE = 3;
+  private static final long MOVE_VALUE = 3;
   private Scanner scanner;
-  private Queue<Integer> fifoQueue;
+  private Queue<Long> fifoQueue;
 
   public InputHandler() {
     this.scanner = new Scanner(System.in);
   }
 
-  public InputHandler(Queue<Integer> fifoQueue) {
+  public InputHandler(Queue<Long> fifoQueue) {
     this.fifoQueue = fifoQueue;
   }
 
   @Override
-  public boolean shouldHandle(int moveValue) {
+  public boolean shouldHandle(long moveValue) {
     return moveValue == MOVE_VALUE;
   }
 
   @Override
   public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
-    int cursor = vonNeumannMachine.getCursor();
-    int position = vonNeumannMachine.getValue(cursor + 1);
+    long cursor = vonNeumannMachine.getCursor();
+    long position = vonNeumannMachine.getValue(cursor + 1);
 
-    int value = extractValue();
+    long value = extractValue();
     vonNeumannMachine.write(position, value);
     vonNeumannMachine.move(cursor + 2);
     return HandlerOutput.builder().result(value).build();
   }
 
   @Override
-  public int getIndex() {
+  public long getIndex() {
     return MOVE_VALUE;
   }
 
-  private int extractValue() {
+  private long extractValue() {
     if (fifoQueue != null) {
       return fifoQueue.poll();
     }

@@ -5,10 +5,10 @@ import it.lpleo.adventofcode.y2019.p5.domain.HandlerOutput;
 
 public class ErrorHandler implements MoveHandler {
 
-  private static final int MOVE_VALUE = Integer.MAX_VALUE;
+  private static final long MOVE_VALUE = Integer.MAX_VALUE;
 
   @Override
-  public boolean shouldHandle(int moveValue) {
+  public boolean shouldHandle(long moveValue) {
     return true;
   }
 
@@ -18,7 +18,7 @@ public class ErrorHandler implements MoveHandler {
   }
 
   @Override
-  public int getIndex() {
+  public long getIndex() {
     return MOVE_VALUE;
   }
 }

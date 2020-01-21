@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p7;
 
-import static it.lpleo.adventofcode.string.InputManipulator.convertInIntegersArray;
+import static it.lpleo.adventofcode.string.InputManipulator.convertStringListInIntegersArray;
 import static java.lang.Character.getNumericValue;
 import static java.util.Arrays.asList;
 
@@ -28,8 +28,8 @@ public class AmplificationCircuitPuzzleHelper {
       new JumpIfFalseHandler(), new JumpIfTrueHandler(), new InputFromVonNeumannMachineHandler(),
       new OutputFromVonNeumannMachineHandler(), new ErrorHandler());
 
-  public static int runMachinesForPermutationsPT1(List<String> inputList, String permutation) {
-    int nextInput = 0;
+  public static long runMachinesForPermutationsPT1(List<String> inputList, String permutation) {
+    long nextInput = 0;
     for (VonNeumannMachine vonNeumannMachine : generateVonNeumannMachines(inputList,
         permutation)) {
       vonNeumannMachine.addInputValue(nextInput);
@@ -41,12 +41,12 @@ public class AmplificationCircuitPuzzleHelper {
   }
 
 
-  public static int runMachinesForPermutationsPT2(List<String> inputList, String permutation) {
+  public static Long runMachinesForPermutationsPT2(List<String> inputList, String permutation) {
     List<VonNeumannMachine> vonNeumannMachineList = generateVonNeumannMachines(inputList,
         permutation);
     VonNeumannMachine runningVonNeumannMachine = vonNeumannMachineList.get(0);
-    Integer lastOutput = 0;
-    Integer lastValidOutput = null;
+    Long lastOutput = 0L;
+    Long lastValidOutput = null;
     while (!lastMachineHasEnded(vonNeumannMachineList)) {
       runningVonNeumannMachine.addInputValue(lastOutput);
 
@@ -73,10 +73,10 @@ public class AmplificationCircuitPuzzleHelper {
 
     for (char phaseSetting : permutation.toCharArray()) {
       List<String> inputCopyList = InputManipulator.copy(inputList);
-      Queue<Integer> inputFifoQueue = new LinkedList<>();
-      inputFifoQueue.add(getNumericValue(phaseSetting));
+      Queue<Long> inputFifoQueue = new LinkedList<>();
+      inputFifoQueue.add((long) getNumericValue(phaseSetting));
       vonNeumannMachineList.add(new VonNeumannMachine(
-          convertInIntegersArray(inputCopyList), inputFifoQueue, new LinkedList<>()));
+          convertStringListInIntegersArray(inputCopyList), inputFifoQueue, new LinkedList<>()));
     }
     return vonNeumannMachineList;
   }

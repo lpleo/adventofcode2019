@@ -5,7 +5,7 @@ import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 public class ErrorHandler implements MoveHandler {
 
   @Override
-  public boolean shouldHandle(int moveValue) {
+  public boolean shouldHandle(long moveValue) {
     return true;
   }
 
@@ -15,7 +15,7 @@ public class ErrorHandler implements MoveHandler {
   }
 
   @Override
-  public int getIndex() {
+  public long getIndex() {
     return Integer.MAX_VALUE;
   }
 }

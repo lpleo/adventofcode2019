@@ -4,25 +4,25 @@ import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 
 public class SumHandler implements MoveHandler {
 
-  private static final int MOVE_VALUE = 1;
+  private static final long MOVE_VALUE = 1;
 
   @Override
-  public boolean shouldHandle(int moveValue) {
+  public boolean shouldHandle(long moveValue) {
     return moveValue == MOVE_VALUE;
   }
 
   @Override
   public void move(VonNeumannMachine vonNeumannMachine) {
-    int cursor = vonNeumannMachine.getCursor();
-    int operand1 = vonNeumannMachine.getReferencedValue(cursor + 1);
-    int operand2 = vonNeumannMachine.getReferencedValue(cursor + 2);
-    int destination = vonNeumannMachine.getValue(cursor + 3);
+    long cursor = vonNeumannMachine.getCursor();
+    long operand1 = vonNeumannMachine.getReferencedValue(cursor + 1);
+    long operand2 = vonNeumannMachine.getReferencedValue(cursor + 2);
+    long destination = vonNeumannMachine.getValue(cursor + 3);
     vonNeumannMachine.write(destination, (operand1 + operand2));
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + 4);
   }
 
   @Override
-  public int getIndex() {
+  public long getIndex() {
     return MOVE_VALUE;
   }
 }

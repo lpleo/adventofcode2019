@@ -31,12 +31,12 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
     pt1handlers = asList(
         new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(new LinkedList<>(singletonList(1))),
+        new InputHandler(new LinkedList<>(singletonList(1L))),
         new OutputHandler(),
         new ErrorHandler());
     pt2handlers = asList(new SumHandler(),
         new MultiplicationHandler(),
-        new InputHandler(new LinkedList<>(singletonList(5))),
+        new InputHandler(new LinkedList<>(singletonList(5L))),
         new OutputHandler(), new EqualsHandler(), new JumpIfFalseHandler(), new JumpIfTrueHandler(),
         new LessThanHandler(), new ErrorHandler());
   }
@@ -44,7 +44,7 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
   @Override
   public String solvePart1(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
-        InputManipulator.convertInIntegersArray(inputList));
+        InputManipulator.convertStringListInIntegersArray(inputList));
     StoppableVonNeumannMachineRunner.run(vonNeumannMachine, pt1handlers);
     return "See over";
   }
@@ -52,7 +52,7 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
   @Override
   public String solvePart2(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
-        InputManipulator.convertInIntegersArray(inputList));
+        InputManipulator.convertStringListInIntegersArray(inputList));
     StoppableVonNeumannMachineRunner.run(vonNeumannMachine, pt2handlers);
     return "See over";
   }

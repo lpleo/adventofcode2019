@@ -18,9 +18,9 @@ public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
   public String solvePart1(List<String> inputList) {
     List<String> permutations = MathService.permutation("01234");
 
-    int max = -1;
+    long max = -1;
     for (String permutation : permutations) {
-      int outputValue = runMachinesForPermutationsPT1(inputList, permutation);
+      long outputValue = runMachinesForPermutationsPT1(inputList, permutation);
       if (outputValue > max) {
         max = outputValue;
       }
@@ -32,9 +32,9 @@ public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
   public String solvePart2(List<String> inputList) {
     List<String> permutations = MathService.permutation("56789");
 
-    int max = -1;
+    long max = -1;
     for (String permutation : permutations) {
-      int outputValue = runMachinesForPermutationsPT2(inputList, permutation);
+      long outputValue = runMachinesForPermutationsPT2(inputList, permutation);
       if (outputValue > max) {
         max = outputValue;
       }

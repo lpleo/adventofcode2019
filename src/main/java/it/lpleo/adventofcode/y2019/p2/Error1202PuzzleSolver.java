@@ -27,7 +27,7 @@ public class Error1202PuzzleSolver extends PuzzleSolver {
   @Override
   public String solvePart1(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
-        InputManipulator.convertInIntegersArray(inputList));
+        InputManipulator.convertStringListInIntegersArray(inputList));
     VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
     return vonNeumannMachine.getValue(0) + "";
   }

@@ -1,49 +1,67 @@
 package it.lpleo.adventofcode.y2019.p2.domain;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 public class VonNeumannMachine {
 
-  private int[] instructions;
-  private int cursor = 0;
-  private Queue<Integer> inputValues;
-  private Queue<Integer> outputValues;
+  private Map<Long, Long> memory;
+  private long cursor = 0;
+  private long relativeCursor = 0;
+  private Queue<Long> inputValues;
+  private Queue<Long> outputValues;
 
-  public VonNeumannMachine(int[] instructions) {
-    this.instructions = instructions;
+  public VonNeumannMachine(long[] instructions) {
+    this.memory = initalizeMemory(instructions);
     this.inputValues = new LinkedList<>();
     this.outputValues = new LinkedList<>();
   }
 
-  public VonNeumannMachine(int[] instructions, Queue<Integer> inputValues,
-      Queue<Integer> outputValues) {
-    this.instructions = instructions;
+  public VonNeumannMachine(long[] instructions, Queue<Long> inputValues,
+      Queue<Long> outputValues) {
+    this.memory = initalizeMemory(instructions);
     this.inputValues = inputValues;
     this.outputValues = outputValues;
   }
 
-  public int getCursor() {
+  public long getCursor() {
     return this.cursor;
   }
 
-  public int getActualValue() {
-    return instructions[cursor];
+  public long getRelativeCursor() {
+    return relativeCursor;
+  }
+  
+  public long getActualValue() {
+    return memory.get(cursor);
   }
 
-  public int getValue(int cursor) {
-    return instructions[cursor];
+  public long getValue(long cursor) {
+    if (!memory.containsKey(cursor)) {
+      memory.put(cursor, 0L);
+    }
+    return memory.get(cursor);
   }
 
-  public int getReferencedValue(int cursor) {
-    return instructions[instructions[cursor]];
+  public long getReferencedValue(long cursor) {
+    return getValue(getValue(cursor));
   }
 
-  public void write(int cursor, int amount) {
-    instructions[cursor] = amount;
+  public long getRelativeBaseValue(long cursor) {
+    return getValue(relativeCursor + getValue(cursor));
   }
 
-  public void move(int cursor) {
+  public void addAtRelativeCursor(long amount) {
+    relativeCursor += amount;
+  }
+
+  public void write(long cursor, long amount) {
+    memory.put(cursor, amount);
+  }
+
+  public void move(long cursor) {
     this.cursor = cursor;
   }
 
@@ -51,24 +69,36 @@ public class VonNeumannMachine {
     return this.getActualValue() == 99;
   }
 
-  public void addInputValue(Integer inputValue) {
+  public void addInputValue(Long inputValue) {
     if (inputValue != null) {
       this.inputValues.add(inputValue);
     }
   }
 
-  public void addOutputValue(int value) {
+  public void addOutputValue(long value) {
     this.outputValues.add(value);
   }
 
-  public int getNextInput() {
+  public long getNextInput() {
     return this.inputValues.poll();
   }
 
-  public Integer getLastOutputIfExist() {
+  public Long getLastOutputIfExist() {
     if (this.outputValues.size() > 0) {
       return this.outputValues.poll();
     }
     return null;
+  }
+
+  public Queue<Long> getOutputValues() {
+    return this.outputValues;
+  }
+
+  private static Map<Long, Long> initalizeMemory(long[] instructions) {
+    Map<Long, Long> memory = new HashMap<>();
+    for (int i = 0; i < instructions.length; i++) {
+      memory.put((long) i, instructions[i]);
+    }
+    return memory;
   }
 }

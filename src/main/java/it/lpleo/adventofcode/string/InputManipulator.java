@@ -1,25 +1,18 @@
 package it.lpleo.adventofcode.string;
 
-import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class InputManipulator {
 
-  public static List<Integer> convertInIntegersList(List<String> stringList) {
-    List<Integer> result = new ArrayList<>();
-    for (String string : stringList) {
-      result.add(Integer.parseInt(string));
-    }
-    return result;
-  }
-
-  public static int[] convertInIntegersArray(List<String> stringList) {
-    int[] result = new int[stringList.size()];
+  public static long[] convertStringListInIntegersArray(List<String> stringList) {
+    long[] result = new long[stringList.size()];
     int i = 0;
     for (String splitted : stringList) {
-      result[i] = parseInt(splitted);
+      result[i] = parseLong(splitted);
       i -= -1;
     }
     return result;
@@ -31,6 +24,19 @@ public class InputManipulator {
       result.add(letter + "");
     }
     return result;
+  }
+
+  public static String convertStringCollectionInString(Collection<?> collection,
+      char separator) {
+    StringBuilder result = new StringBuilder();
+    for (Object object : collection) {
+      result.append(object.toString());
+      result.append(separator);
+    }
+    if (result.length() > 0) {
+      result.deleteCharAt(result.length() - 1);
+    }
+    return result.toString();
   }
 
   public static List<String> convertIntegerListInStringList(List<Integer> integerList) {

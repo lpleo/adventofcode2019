@@ -29,6 +29,6 @@ public class LayerServiceTest {
   @Test
   public void generateImageTest() {
     String result = LayerService.generateImage(asList("0222", "1122", "2212", "0000"), 2, 2);
-    assertThat(result, is("01\n10\n"));
+    assertThat(result, is("\n\n X\nX \n"));
   }
 }
