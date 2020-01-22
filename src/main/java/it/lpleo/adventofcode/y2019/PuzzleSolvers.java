@@ -20,14 +20,14 @@ public class PuzzleSolvers {
 
   public static List<PuzzleSolver> instantiate2019PuzzleSolvers() {
     List<PuzzleSolver> puzzles2019 = new ArrayList<>();
-    /*puzzles2019.add(new RocketEquationPuzzleSolver(getRocketEquationPuzzle()));
+    puzzles2019.add(new RocketEquationPuzzleSolver(getRocketEquationPuzzle()));
     puzzles2019.add(new Error1202PuzzleSolver(getError1202Puzzle()));
     puzzles2019.add(new CrossedWirePuzzleSolver(getCrossedWirePuzzle()));
     puzzles2019.add(new SecureContainerPuzzleSolver(getSecureContainerPuzzle()));
     puzzles2019.add(new ChanceOfAsteroidsPuzzleSolver(getChanceOfAsteroidsPuzzle()));
     puzzles2019.add(new UniversalOrbitMapPuzzleSolver(getUniversalOrbitMapPuzzle()));
     puzzles2019.add(new AmplificationCircuitPuzzleSolver(getAmplificationCircuitPuzzle()));
-    puzzles2019.add(new SpaceImageFormatPuzzleSolver(getSpaceImageFormatPuzzle()));*/
+    puzzles2019.add(new SpaceImageFormatPuzzleSolver(getSpaceImageFormatPuzzle()));
     puzzles2019.add(new SensorBoostPuzzleSolver(getSensorBoostPuzzle()));
     return puzzles2019;
   }
