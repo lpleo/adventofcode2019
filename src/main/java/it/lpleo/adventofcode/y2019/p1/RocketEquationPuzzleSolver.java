@@ -1,7 +1,7 @@
 package it.lpleo.adventofcode.y2019.p1;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import static java.lang.Math.floor;
 
 public class RocketEquationPuzzleSolver extends PuzzleSolver {
 
-    public RocketEquationPuzzleSolver(Puzzle puzzle) {
-        super(puzzle);
+    public RocketEquationPuzzleSolver() {
+        super(new Puzzle(1, 2019, "RocketEquation"));
     }
 
     public String solvePart1(List<String> inputList) {

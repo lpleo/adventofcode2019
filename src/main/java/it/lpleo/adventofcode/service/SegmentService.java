@@ -1,10 +1,11 @@
-package it.lpleo.adventofcode.y2019.p3.service;
+package it.lpleo.adventofcode.service;
 
 import static java.lang.Math.*;
 import static java.lang.Math.max;
 
-import it.lpleo.adventofcode.y2019.p3.domain.Point;
-import it.lpleo.adventofcode.y2019.p3.domain.Segment;
+import it.lpleo.adventofcode.domain.Point;
+import it.lpleo.adventofcode.domain.Segment;
+import it.lpleo.adventofcode.y2019.p3.service.PointService;
 import java.util.ArrayList;
 import java.util.List;
 

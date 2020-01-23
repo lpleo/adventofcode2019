@@ -3,15 +3,15 @@ package it.lpleo.adventofcode.y2019.p7;
 import static it.lpleo.adventofcode.y2019.p7.AmplificationCircuitPuzzleHelper.runMachinesForPermutationsPT1;
 import static it.lpleo.adventofcode.y2019.p7.AmplificationCircuitPuzzleHelper.runMachinesForPermutationsPT2;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.y2019.p7.service.MathService;
 import java.util.List;
 
 public class AmplificationCircuitPuzzleSolver extends PuzzleSolver {
 
-  public AmplificationCircuitPuzzleSolver(Puzzle puzzle) {
-    super(puzzle);
+  public AmplificationCircuitPuzzleSolver() {
+    super(new Puzzle(7, 2019, "AmplificationCircuit"));
   }
 
   @Override

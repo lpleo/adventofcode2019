@@ -2,17 +2,17 @@ package it.lpleo.adventofcode.y2019.p3;
 
 import static java.lang.Math.abs;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
-import it.lpleo.adventofcode.y2019.p3.domain.Point;
-import it.lpleo.adventofcode.y2019.p3.domain.Segment;
-import it.lpleo.adventofcode.y2019.p3.service.SegmentService;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
+import it.lpleo.adventofcode.domain.Point;
+import it.lpleo.adventofcode.domain.Segment;
+import it.lpleo.adventofcode.service.SegmentService;
 import java.util.List;
 
 public class CrossedWirePuzzleSolver extends PuzzleSolver {
 
-  public CrossedWirePuzzleSolver(Puzzle puzzle) {
-    super(puzzle);
+  public CrossedWirePuzzleSolver() {
+    super(new Puzzle(3, 2019, "CrossedWire"));
   }
 
   @Override
@@ -23,7 +23,7 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
     List<Point> crossingPoints = SegmentService
         .getCrossingPoints(firstLineSegments, secondLineSegments);
     crossingPoints = crossingPoints.subList(1, crossingPoints.size());
-    
+
     return getLowerDistanceFromOrigin(crossingPoints) + "";
   }
 
@@ -36,7 +36,7 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
     List<Point> crossingPoints = SegmentService
         .getCrossingPoints(firstLineSegments, secondLineSegments);
     crossingPoints = crossingPoints.subList(1, crossingPoints.size());
-    
+
     int lowerPath = -1;
     for (Point crossPoint : crossingPoints) {
       int pathLength1 = SegmentService.getPathLengthToPoint(firstLineSegments, crossPoint);

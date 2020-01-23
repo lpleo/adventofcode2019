@@ -1,10 +1,7 @@
-package it.lpleo.adventofcode.puzzle;
+package it.lpleo.adventofcode.domain;
 
-import it.lpleo.adventofcode.file.FileHandler;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor

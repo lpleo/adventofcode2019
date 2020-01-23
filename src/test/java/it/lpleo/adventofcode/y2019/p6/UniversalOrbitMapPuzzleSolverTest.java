@@ -18,8 +18,7 @@ public class UniversalOrbitMapPuzzleSolverTest {
 
   @Test
   public void solvePart1() {
-    UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver(
-        PuzzleSolvers.getUniversalOrbitMapPuzzle());
+    UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver();
 
     String result = puzzleSolver.solvePart1(pt1);
     assertThat(result, Matchers.is("42"));
@@ -27,8 +26,7 @@ public class UniversalOrbitMapPuzzleSolverTest {
 
   @Test
   public void solvePart2() {
-    UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver(
-        PuzzleSolvers.getUniversalOrbitMapPuzzle());
+    UniversalOrbitMapPuzzleSolver puzzleSolver = new UniversalOrbitMapPuzzleSolver();
 
     String result = puzzleSolver.solvePart2(pt2);
     assertThat(result, Matchers.is("4"));

@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p8.service;
 
-import static it.lpleo.adventofcode.string.InputManipulator.*;
+import static it.lpleo.adventofcode.service.InputManipulatorService.*;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;

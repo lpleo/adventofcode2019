@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.y2019.p3.domain;
+package it.lpleo.adventofcode.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

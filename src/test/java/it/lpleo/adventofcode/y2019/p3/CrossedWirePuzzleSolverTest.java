@@ -10,8 +10,7 @@ import org.junit.Test;
 
 public class CrossedWirePuzzleSolverTest {
 
-  private CrossedWirePuzzleSolver crossedWirePuzzleSolver = new CrossedWirePuzzleSolver(
-      PuzzleSolvers.getCrossedWirePuzzle());
+  private CrossedWirePuzzleSolver crossedWirePuzzleSolver = new CrossedWirePuzzleSolver();
 
   @Test
   public void solvePart1() {

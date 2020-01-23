@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.file;
+package it.lpleo.adventofcode.service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,12 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class FileHandler {
-    private static FileHandler instance = null;
+public class FileService {
+    private static FileService instance = null;
 
-    public static FileHandler getInstance() {
+    public static FileService getInstance() {
         if (instance == null) {
-            instance = new FileHandler();
+            instance = new FileService();
         }
         return instance;
     }

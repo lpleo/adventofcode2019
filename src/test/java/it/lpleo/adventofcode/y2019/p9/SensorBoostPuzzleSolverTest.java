@@ -4,14 +4,13 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import it.lpleo.adventofcode.puzzle.Puzzle;
+import it.lpleo.adventofcode.domain.Puzzle;
 import org.junit.Test;
 
 public class SensorBoostPuzzleSolverTest {
 
-  private static final SensorBoostPuzzleSolver puzzleSolver = new SensorBoostPuzzleSolver(
-      new Puzzle(9, 2009, "SensorBoost"));
-  
+  private static final SensorBoostPuzzleSolver puzzleSolver = new SensorBoostPuzzleSolver();
+
   @Test
   public void solvePart1_1() {
     String input = "109,19,204,-34,99";

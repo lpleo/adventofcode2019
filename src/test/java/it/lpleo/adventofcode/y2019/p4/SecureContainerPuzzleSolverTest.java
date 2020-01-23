@@ -9,8 +9,7 @@ import org.junit.Test;
 
 public class SecureContainerPuzzleSolverTest {
 
-  private SecureContainerPuzzleSolver puzzleSolver = new SecureContainerPuzzleSolver(
-      PuzzleSolvers.getSecureContainerPuzzle());
+  private SecureContainerPuzzleSolver puzzleSolver = new SecureContainerPuzzleSolver();
 
   @Test
   public void solvePart1() {

@@ -3,9 +3,9 @@ package it.lpleo.adventofcode.y2019.p2;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.asList;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
-import it.lpleo.adventofcode.string.InputManipulator;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
+import it.lpleo.adventofcode.service.InputManipulatorService;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachineRunner;
 import it.lpleo.adventofcode.y2019.p2.domain.handler.ErrorHandler;
@@ -19,15 +19,15 @@ public class Error1202PuzzleSolver extends PuzzleSolver {
 
   private List<MoveHandler> handlers;
 
-  public Error1202PuzzleSolver(Puzzle puzzle) {
-    super(puzzle);
+  public Error1202PuzzleSolver() {
+    super(new Puzzle(2, 2019, "Error1202"));
     handlers = asList(new SumHandler(), new MultiplicationHandler(), new ErrorHandler());
   }
 
   @Override
   public String solvePart1(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
-        InputManipulator.convertStringListInIntegersArray(inputList));
+        InputManipulatorService.convertStringListInIntegersArray(inputList));
     VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
     return vonNeumannMachine.getValue(0) + "";
   }

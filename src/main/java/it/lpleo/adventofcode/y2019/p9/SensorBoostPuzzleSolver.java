@@ -1,11 +1,11 @@
 package it.lpleo.adventofcode.y2019.p9;
 
-import static it.lpleo.adventofcode.string.InputManipulator.convertStringCollectionInString;
-import static it.lpleo.adventofcode.string.InputManipulator.convertStringListInIntegersArray;
+import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringCollectionInString;
+import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringListInIntegersArray;
 import static java.util.Arrays.asList;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
@@ -30,8 +30,8 @@ public class SensorBoostPuzzleSolver extends PuzzleSolver {
       new OutputFromVonNeumannMachineHandler(), new ChangeRelativeBaseHandler(),
       new ErrorHandler());
 
-  public SensorBoostPuzzleSolver(Puzzle puzzle) {
-    super(puzzle);
+  public SensorBoostPuzzleSolver() {
+    super(new Puzzle(9, 2019, "SensorBoostPuzzle"));
   }
 
   @Override

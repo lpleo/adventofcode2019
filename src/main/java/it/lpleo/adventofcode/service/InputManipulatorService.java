@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.string;
+package it.lpleo.adventofcode.service;
 
 import static java.lang.Long.parseLong;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class InputManipulator {
+public class InputManipulatorService {
 
   public static long[] convertStringListInIntegersArray(List<String> stringList) {
     long[] result = new long[stringList.size()];

@@ -2,8 +2,8 @@ package it.lpleo.adventofcode.y2019.p4;
 
 import static java.util.Arrays.asList;
 
-import it.lpleo.adventofcode.PuzzleSolver;
-import it.lpleo.adventofcode.puzzle.Puzzle;
+import it.lpleo.adventofcode.domain.PuzzleSolver;
+import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.y2019.p4.service.AlmostTwoAdjacentEqualsDigitsCriteria;
 import it.lpleo.adventofcode.y2019.p4.service.Criteria;
 import it.lpleo.adventofcode.y2019.p4.service.DigitsNeverDecreaseCriteria;
@@ -14,8 +14,8 @@ import java.util.List;
 
 public class SecureContainerPuzzleSolver extends PuzzleSolver {
 
-  public SecureContainerPuzzleSolver(Puzzle puzzle) {
-    super(puzzle);
+  public SecureContainerPuzzleSolver() {
+    super(new Puzzle(4, 2019, "SecureContainer"));
   }
 
   @Override

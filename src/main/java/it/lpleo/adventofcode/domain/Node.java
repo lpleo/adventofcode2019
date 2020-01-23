@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.y2019.p6.domain;
+package it.lpleo.adventofcode.domain;
 
 import java.util.ArrayList;
 import java.util.List;

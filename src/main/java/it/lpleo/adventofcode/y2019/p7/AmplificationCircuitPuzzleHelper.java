@@ -1,10 +1,10 @@
 package it.lpleo.adventofcode.y2019.p7;
 
-import static it.lpleo.adventofcode.string.InputManipulator.convertStringListInIntegersArray;
+import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringListInIntegersArray;
 import static java.lang.Character.getNumericValue;
 import static java.util.Arrays.asList;
 
-import it.lpleo.adventofcode.string.InputManipulator;
+import it.lpleo.adventofcode.service.InputManipulatorService;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
 import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
@@ -72,7 +72,7 @@ public class AmplificationCircuitPuzzleHelper {
     List<VonNeumannMachine> vonNeumannMachineList = new ArrayList<>();
 
     for (char phaseSetting : permutation.toCharArray()) {
-      List<String> inputCopyList = InputManipulator.copy(inputList);
+      List<String> inputCopyList = InputManipulatorService.copy(inputList);
       Queue<Long> inputFifoQueue = new LinkedList<>();
       inputFifoQueue.add((long) getNumericValue(phaseSetting));
       vonNeumannMachineList.add(new VonNeumannMachine(

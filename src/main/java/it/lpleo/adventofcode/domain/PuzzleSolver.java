@@ -1,9 +1,7 @@
-package it.lpleo.adventofcode;
-
-import it.lpleo.adventofcode.puzzle.Puzzle;
-import lombok.Getter;
+package it.lpleo.adventofcode.domain;
 
 import java.util.List;
+import lombok.Getter;
 
 public abstract class PuzzleSolver {
 

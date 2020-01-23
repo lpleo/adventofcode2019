@@ -1,6 +1,6 @@
-package it.lpleo.adventofcode.y2019.p6.service;
+package it.lpleo.adventofcode.service;
 
-import it.lpleo.adventofcode.y2019.p6.domain.Node;
+import it.lpleo.adventofcode.domain.Node;
 import java.util.ArrayList;
 import java.util.List;
 
