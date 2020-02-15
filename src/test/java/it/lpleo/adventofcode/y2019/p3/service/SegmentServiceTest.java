@@ -21,8 +21,8 @@ public class SegmentServiceTest {
     Point result = SegmentService.getCrossingPoint(segmentA, segmentB);
 
     assertNotNull(result);
-    assertThat(result.getX(), Matchers.is(6));
-    assertThat(result.getY(), Matchers.is(5));
+    assertThat(result.getX(), Matchers.is(6.0));
+    assertThat(result.getY(), Matchers.is(5.0));
   }
 
   @Test
@@ -44,18 +44,18 @@ public class SegmentServiceTest {
   public void getDistanceFromAOfPoint() {
     Segment segment = Segment.builder().a(new Point(8, -10)).b(new Point(8, 5)).build();
     Point point = new Point(8, -1);
-    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(9));
+    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(9.0));
 
     segment = Segment.builder().a(new Point(8, -10)).b(new Point(8, 5)).build();
     point = new Point(8, 1);
-    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(11));
+    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(11.0));
 
     segment = Segment.builder().a(new Point(0, 0)).b(new Point(10, 0)).build();
     point = new Point(6, 0);
-    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(6));
+    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(6.0));
 
     segment = Segment.builder().a(new Point(10, 0)).b(new Point(0, 0)).build();
     point = new Point(6, 0);
-    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(4));
+    assertThat(SegmentService.getDistanceFromAOfPoint(segment, point), is(4.0));
   }
 }

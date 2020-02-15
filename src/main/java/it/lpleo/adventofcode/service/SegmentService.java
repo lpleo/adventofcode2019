@@ -76,7 +76,7 @@ public class SegmentService {
     return false;
   }
 
-  public static int getDistanceFromAOfPoint(Segment segment, Point point) {
+  public static double getDistanceFromAOfPoint(Segment segment, Point point) {
     if (pointBelongToSegment(segment, point)) {
       if (parallelXSegment(segment)) {
         return abs(segment.getA().getX() - point.getX());
@@ -88,7 +88,7 @@ public class SegmentService {
     throw new RuntimeException("Point does not belong at segment");
   }
 
-  public static int getPathLengthToPoint(List<Segment> pathSegments, Point point) {
+  public static double getPathLengthToPoint(List<Segment> pathSegments, Point point) {
     int pathLength = 0;
     for (Segment segment : pathSegments) {
       if (SegmentService.pointBelongToSegment(segment, point)) {
@@ -106,13 +106,13 @@ public class SegmentService {
     Point apy = parallelYSegment.getA();
     Point bpy = parallelYSegment.getB();
 
-    int xapx = min(apx.getX(), bpx.getX());
-    int xbpx = max(apx.getX(), bpx.getX());
-    int xapy = apy.getX();
+    double xapx = min(apx.getX(), bpx.getX());
+    double xbpx = max(apx.getX(), bpx.getX());
+    double xapy = apy.getX();
 
-    int yapy = min(apy.getY(), bpy.getY());
-    int ybpy = max(apy.getY(), bpy.getY());
-    int yapx = apx.getY();
+    double yapy = min(apy.getY(), bpy.getY());
+    double ybpy = max(apy.getY(), bpy.getY());
+    double yapx = apx.getY();
 
     boolean betweenX = (xapx <= xapy && xapy <= xbpx);
     boolean betweenY = (yapy <= yapx && yapx <= ybpy);

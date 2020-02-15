@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class Point {
+public class Point implements IPoint {
 
-  private int x;
-  private int y;
+  private double x;
+  private double y;
 
   public void sum(Point point) {
     this.x += point.getX();

@@ -37,11 +37,11 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
         .getCrossingPoints(firstLineSegments, secondLineSegments);
     crossingPoints = crossingPoints.subList(1, crossingPoints.size());
 
-    int lowerPath = -1;
+    double lowerPath = -1;
     for (Point crossPoint : crossingPoints) {
-      int pathLength1 = SegmentService.getPathLengthToPoint(firstLineSegments, crossPoint);
-      int pathLength2 = SegmentService.getPathLengthToPoint(secondLineSegments, crossPoint);
-      int totalPath = pathLength1 + pathLength2;
+      double pathLength1 = SegmentService.getPathLengthToPoint(firstLineSegments, crossPoint);
+      double pathLength2 = SegmentService.getPathLengthToPoint(secondLineSegments, crossPoint);
+      double totalPath = pathLength1 + pathLength2;
       if (totalPath < lowerPath || lowerPath == -1) {
         lowerPath = totalPath;
       }
@@ -53,8 +53,8 @@ public class CrossedWirePuzzleSolver extends PuzzleSolver {
   private String getLowerDistanceFromOrigin(List<Point> crossPoints) {
     Point nearestCandidate = crossPoints.get(0);
     for (Point crossPoint : crossPoints) {
-      int oldDistance = abs(nearestCandidate.getX()) + abs(nearestCandidate.getY());
-      int newDistance = abs(crossPoint.getX()) + abs(crossPoint.getY());
+      double oldDistance = abs(nearestCandidate.getX()) + abs(nearestCandidate.getY());
+      double newDistance = abs(crossPoint.getX()) + abs(crossPoint.getY());
       if (newDistance < oldDistance) {
         nearestCandidate = crossPoint;
       }
