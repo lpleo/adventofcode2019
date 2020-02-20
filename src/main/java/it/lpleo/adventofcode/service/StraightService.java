@@ -1,8 +1,8 @@
 package it.lpleo.adventofcode.service;
 
-import it.lpleo.adventofcode.domain.IPoint;
-import it.lpleo.adventofcode.domain.Straight;
-import it.lpleo.adventofcode.domain.StraightType;
+import it.lpleo.adventofcode.domain.geometry.IPoint;
+import it.lpleo.adventofcode.domain.geometry.Straight;
+import it.lpleo.adventofcode.domain.geometry.StraightType;
 import java.util.List;
 
 public class StraightService {

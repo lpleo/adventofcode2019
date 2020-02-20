@@ -3,8 +3,8 @@ package it.lpleo.adventofcode.service;
 import static java.lang.Math.*;
 import static java.lang.Math.max;
 
-import it.lpleo.adventofcode.domain.Point;
-import it.lpleo.adventofcode.domain.Segment;
+import it.lpleo.adventofcode.domain.geometry.Point;
+import it.lpleo.adventofcode.domain.geometry.Segment;
 import it.lpleo.adventofcode.y2019.p3.service.PointService;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p10.domain;
 
-import it.lpleo.adventofcode.domain.IPoint;
+import it.lpleo.adventofcode.domain.geometry.IPoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

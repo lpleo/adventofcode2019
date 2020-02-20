@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import it.lpleo.adventofcode.domain.Point;
-import it.lpleo.adventofcode.domain.Segment;
+import it.lpleo.adventofcode.domain.geometry.Point;
+import it.lpleo.adventofcode.domain.geometry.Segment;
 import it.lpleo.adventofcode.service.SegmentService;
 import org.hamcrest.Matchers;
 import org.junit.Test;

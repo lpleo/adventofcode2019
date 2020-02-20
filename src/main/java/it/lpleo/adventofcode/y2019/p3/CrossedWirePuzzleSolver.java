@@ -4,8 +4,8 @@ import static java.lang.Math.abs;
 
 import it.lpleo.adventofcode.domain.PuzzleSolver;
 import it.lpleo.adventofcode.domain.Puzzle;
-import it.lpleo.adventofcode.domain.Point;
-import it.lpleo.adventofcode.domain.Segment;
+import it.lpleo.adventofcode.domain.geometry.Point;
+import it.lpleo.adventofcode.domain.geometry.Segment;
 import it.lpleo.adventofcode.service.SegmentService;
 import java.util.List;
 

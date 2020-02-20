@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p10.domain;
 
-import it.lpleo.adventofcode.domain.Straight;
+import it.lpleo.adventofcode.domain.geometry.Straight;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;

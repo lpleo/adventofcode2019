@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.domain;
+package it.lpleo.adventofcode.domain.geometry;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

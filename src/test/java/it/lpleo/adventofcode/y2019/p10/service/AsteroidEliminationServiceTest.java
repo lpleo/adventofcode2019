@@ -4,8 +4,8 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-import it.lpleo.adventofcode.domain.Straight;
-import it.lpleo.adventofcode.domain.StraightType;
+import it.lpleo.adventofcode.domain.geometry.Straight;
+import it.lpleo.adventofcode.domain.geometry.StraightType;
 import it.lpleo.adventofcode.y2019.p10.domain.Asteroid;
 import it.lpleo.adventofcode.y2019.p10.domain.Base;
 import it.lpleo.adventofcode.y2019.p10.domain.LineOfSight;

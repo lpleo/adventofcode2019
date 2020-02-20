@@ -1,7 +1,7 @@
 package it.lpleo.adventofcode.y2019.p10.service;
 
-import it.lpleo.adventofcode.domain.Straight;
-import it.lpleo.adventofcode.domain.StraightType;
+import it.lpleo.adventofcode.domain.geometry.Straight;
+import it.lpleo.adventofcode.domain.geometry.StraightType;
 import it.lpleo.adventofcode.service.StraightService;
 import it.lpleo.adventofcode.y2019.p10.domain.Asteroid;
 import it.lpleo.adventofcode.y2019.p10.domain.LineOfSight;

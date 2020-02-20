@@ -3,7 +3,7 @@ package it.lpleo.adventofcode.service;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-import it.lpleo.adventofcode.domain.IPoint;
+import it.lpleo.adventofcode.domain.geometry.IPoint;
 import java.util.List;
 
 public class PointService {

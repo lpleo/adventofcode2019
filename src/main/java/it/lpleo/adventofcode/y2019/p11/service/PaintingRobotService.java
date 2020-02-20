@@ -1,7 +1,7 @@
 package it.lpleo.adventofcode.y2019.p11.service;
 
-import it.lpleo.adventofcode.domain.IPoint;
-import it.lpleo.adventofcode.domain.Point;
+import it.lpleo.adventofcode.domain.geometry.IPoint;
+import it.lpleo.adventofcode.domain.geometry.Point;
 import it.lpleo.adventofcode.service.PointService;
 import it.lpleo.adventofcode.y2019.p11.domain.Color;
 import it.lpleo.adventofcode.y2019.p11.domain.ColoredPoint;

@@ -1,4 +1,4 @@
-package it.lpleo.adventofcode.domain;
+package it.lpleo.adventofcode.domain.geometry;
 
 public interface IPoint {
   double getX();

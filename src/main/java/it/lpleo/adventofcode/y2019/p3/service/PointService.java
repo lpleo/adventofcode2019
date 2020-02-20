@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p3.service;
 
-import it.lpleo.adventofcode.domain.Point;
+import it.lpleo.adventofcode.domain.geometry.Point;
 
 public class PointService {
 

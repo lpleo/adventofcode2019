@@ -2,10 +2,9 @@ package it.lpleo.adventofcode.service;
 
 import static org.junit.Assert.*;
 
-import it.lpleo.adventofcode.domain.Point;
-import it.lpleo.adventofcode.domain.Straight;
-import it.lpleo.adventofcode.domain.StraightType;
-import it.lpleo.adventofcode.y2019.p10.domain.Asteroid;
+import it.lpleo.adventofcode.domain.geometry.Point;
+import it.lpleo.adventofcode.domain.geometry.Straight;
+import it.lpleo.adventofcode.domain.geometry.StraightType;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 

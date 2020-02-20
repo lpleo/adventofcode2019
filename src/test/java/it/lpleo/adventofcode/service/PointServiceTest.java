@@ -3,9 +3,8 @@ package it.lpleo.adventofcode.service;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-import it.lpleo.adventofcode.domain.IPoint;
-import it.lpleo.adventofcode.domain.Point;
-import it.lpleo.adventofcode.y2019.p10.domain.Asteroid;
+import it.lpleo.adventofcode.domain.geometry.IPoint;
+import it.lpleo.adventofcode.domain.geometry.Point;
 import it.lpleo.adventofcode.y2019.p11.domain.Color;
 import it.lpleo.adventofcode.y2019.p11.domain.ColoredPoint;
 import java.util.ArrayList;

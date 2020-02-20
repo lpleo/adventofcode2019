@@ -1,6 +1,6 @@
 package it.lpleo.adventofcode.y2019.p10.domain;
 
-import it.lpleo.adventofcode.domain.StraightByMComparator;
+import it.lpleo.adventofcode.domain.geometry.StraightByMComparator;
 
 public class LineOfSightComparator implements
     java.util.Comparator<LineOfSight> {
