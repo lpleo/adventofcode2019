@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StoppableVonNeumannMachineRunner {
 
-  public static boolean runStoppableMachine(VonNeumannMachine vonNeumannMachine,
+  public static HandlerOutput runStoppableMachine(VonNeumannMachine vonNeumannMachine,
       List<MoveHandler> handlers) {
 
     handlers.sort(Comparator.comparingLong(MoveHandler::getIndex));
@@ -25,7 +25,7 @@ public class StoppableVonNeumannMachineRunner {
       }
     }
 
-    return vonNeumannMachine.getActualValue() == 99;
+    return handlerOutput;
   }
 
   public static void run(VonNeumannMachine vonNeumannMachine, List<MoveHandler> handlers) {

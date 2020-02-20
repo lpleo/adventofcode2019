@@ -64,7 +64,7 @@ public class AmplificationCircuitPuzzleHelper {
 
   private static boolean lastMachineHasEnded(List<VonNeumannMachine> vonNeumannMachineList) {
     return vonNeumannMachineList.get(vonNeumannMachineList.size() - 1)
-        .endProgram();
+        .hasFinished();
   }
 
   private static List<VonNeumannMachine> generateVonNeumannMachines(List<String> inputList,

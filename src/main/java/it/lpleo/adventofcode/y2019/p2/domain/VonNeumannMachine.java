@@ -33,7 +33,7 @@ public class VonNeumannMachine {
   public long getRelativeCursor() {
     return relativeCursor;
   }
-  
+
   public long getActualValue() {
     return memory.get(cursor);
   }
@@ -65,8 +65,12 @@ public class VonNeumannMachine {
     this.cursor = cursor;
   }
 
-  public boolean endProgram() {
+  public boolean hasFinished() {
     return this.getActualValue() == 99;
+  }
+
+  public boolean hasNotFinished() {
+    return this.getActualValue() != 99;
   }
 
   public void addInputValue(Long inputValue) {
@@ -80,7 +84,10 @@ public class VonNeumannMachine {
   }
 
   public long getNextInput() {
-    return this.inputValues.poll();
+    if (this.inputValues.size() > 0) {
+      return this.inputValues.poll();
+    }
+    throw new RuntimeException("There are no input left");
   }
 
   public Long getLastOutputIfExist() {

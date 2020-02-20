@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HandlerOutput {
   private boolean wait;
-  private long result;
+  private double result;
 }

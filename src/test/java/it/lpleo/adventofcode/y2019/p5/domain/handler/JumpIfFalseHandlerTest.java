@@ -16,7 +16,7 @@ public class JumpIfFalseHandlerTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{6, 6, 5, 15, 99, 4, 0});
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(1L));
+    assertThat(result.getResult(), Matchers.is(1.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(99L));
   }
 
@@ -25,7 +25,7 @@ public class JumpIfFalseHandlerTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{1006, 6, 4, 15, 99, 4, 0});
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(1L));
+    assertThat(result.getResult(), Matchers.is(1.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(99L));
   }
 
@@ -35,7 +35,7 @@ public class JumpIfFalseHandlerTest {
         new long[]{1206, 5, 4, 15, 99, 4, 0});
     vonNeumannMachine.addAtRelativeCursor(1L);
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(1L));
+    assertThat(result.getResult(), Matchers.is(1.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(99L));
   }
 
@@ -44,7 +44,7 @@ public class JumpIfFalseHandlerTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{6, 6, 5, 15, 99, 4, 1});
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(0L));
+    assertThat(result.getResult(), Matchers.is(0.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(15L));
   }
 
@@ -53,7 +53,7 @@ public class JumpIfFalseHandlerTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{6, 6, 5, 15, 99, 4, 1});
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(0L));
+    assertThat(result.getResult(), Matchers.is(0.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(15L));
   }
 
@@ -63,7 +63,7 @@ public class JumpIfFalseHandlerTest {
         new long[]{1206, 5, 4, 15, 99, 4, 1});
     vonNeumannMachine.addAtRelativeCursor(1L);
     HandlerOutput result = jumpIfFalseHandler.move(vonNeumannMachine);
-    assertThat(result.getResult(), Matchers.is(0L));
+    assertThat(result.getResult(), Matchers.is(0.0));
     assertThat(vonNeumannMachine.getActualValue(), Matchers.is(15L));
   }
 }

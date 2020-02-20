@@ -5,6 +5,7 @@ import it.lpleo.adventofcode.service.FileService;
 import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.y2019.p1.RocketEquationPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p10.MonitoringStationPuzzleSolver;
+import it.lpleo.adventofcode.y2019.p11.SpacePolicePuzzleSolver;
 import it.lpleo.adventofcode.y2019.p2.Error1202PuzzleSolver;
 
 import it.lpleo.adventofcode.y2019.p3.CrossedWirePuzzleSolver;
@@ -31,6 +32,7 @@ public class PuzzleSolvers {
     puzzles2019.add(new SpaceImageFormatPuzzleSolver());
     puzzles2019.add(new SensorBoostPuzzleSolver());
     puzzles2019.add(new MonitoringStationPuzzleSolver());
+    puzzles2019.add(new SpacePolicePuzzleSolver());
     return puzzles2019;
   }
 

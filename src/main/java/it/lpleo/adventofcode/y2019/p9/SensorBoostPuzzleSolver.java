@@ -4,6 +4,7 @@ import static it.lpleo.adventofcode.service.InputManipulatorService.convertStrin
 import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringListInIntegersArray;
 import static java.util.Arrays.asList;
 
+import it.lpleo.adventofcode.domain.HandlerList;
 import it.lpleo.adventofcode.domain.PuzzleSolver;
 import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
@@ -23,12 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SensorBoostPuzzleSolver extends PuzzleSolver {
-
-  private static List<MoveHandler> handlers = asList(new SumHandler(),
-      new MultiplicationHandler(), new EqualsHandler(), new LessThanHandler(),
-      new JumpIfFalseHandler(), new JumpIfTrueHandler(), new InputFromVonNeumannMachineHandler(),
-      new OutputFromVonNeumannMachineHandler(), new ChangeRelativeBaseHandler(),
-      new ErrorHandler());
 
   public SensorBoostPuzzleSolver() {
     super(new Puzzle(9, 2019, "SensorBoostPuzzle"));
@@ -51,7 +46,7 @@ public class SensorBoostPuzzleSolver extends PuzzleSolver {
   private String solvePart(List<String> inputList, LinkedList<Long> inputValues) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         convertStringListInIntegersArray(inputList), inputValues, new LinkedList<>());
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, handlers);
+    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
     return convertStringCollectionInString(vonNeumannMachine.getOutputValues(), ',');
   }
 }
