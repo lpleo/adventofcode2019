@@ -21,4 +21,9 @@ public class ColoredPoint implements IPoint {
   private double y;
   @Setter
   private Color color;
+
+  @Override
+  public double[] getCoordinates() {
+    return new double[]{x, y};
+  }
 }

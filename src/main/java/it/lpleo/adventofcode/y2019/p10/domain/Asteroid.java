@@ -10,4 +10,9 @@ public class Asteroid implements IPoint {
 
   private double x;
   private double y;
+
+  @Override
+  public double[] getCoordinates() {
+    return new double[]{x, y};
+  }
 }

@@ -33,11 +33,26 @@ public class PointService {
 
   public <T extends IPoint> T extractPoint(IPoint iPoint, List<T> points) {
     for (T pointInList : points) {
-      if (pointInList.getX() == iPoint.getX() && pointInList.getY() == iPoint.getY()) {
+      if (equalCoordinates(iPoint.getCoordinates(), pointInList.getCoordinates())) {
         return pointInList;
       }
     }
     return null;
   }
 
+  public <T extends IPoint> void sumPoint(T iPointA, T iPointB, T iPointResult) {
+    for (int i = 0; i < iPointA.getCoordinates().length; i++) {
+      iPointResult.getCoordinates()[i] = iPointA.getCoordinates()[i] + iPointB.getCoordinates()[i];
+    }
+  }
+
+  private boolean equalCoordinates(double[] coordinatesA, double[] coordinatesB) {
+    int size = coordinatesA.length;
+    for (int i = 0; i < size; i++) {
+      if (coordinatesA[i] != coordinatesB[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

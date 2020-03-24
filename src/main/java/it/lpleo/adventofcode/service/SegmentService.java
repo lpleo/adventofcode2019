@@ -11,6 +11,9 @@ import java.util.List;
 
 public class SegmentService {
 
+  private static it.lpleo.adventofcode.service.PointService pointService = it.lpleo.adventofcode.service.PointService
+      .getInstance();
+
   public static List<Segment> getSegments(String line) {
     List<Segment> segments = new ArrayList<>();
     Point startingPoint = Point.builder().x(0).y(0).build();
@@ -28,8 +31,7 @@ public class SegmentService {
 
     Point temporaryPoint = PointService.calculatePoint(direction, length);
     Point endpoint = startingPoint.clone();
-    endpoint.sum(temporaryPoint);
-
+    pointService.sumPoint(endpoint, temporaryPoint, endpoint);
     return Segment.builder().a(startingPoint).b(endpoint).length(length).build();
   }
 

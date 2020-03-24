@@ -38,6 +38,16 @@ public class PointServiceTest {
     assertThat(result, is(points.get(0)));
   }
 
+  @Test
+  public void sumPoint() {
+    Point pointA = new Point(1.0, 2.0);
+    Point pointB = new Point(5.0, 5.0);
+    POINT_SERVICE.sumPoint(pointA, pointB, pointA);
+
+    assertThat(pointA.getX(), is(6.0));
+    assertThat(pointA.getY(), is(7.0));
+  }
+
   private List<IPoint> createPointList() {
     List<IPoint> points = new ArrayList<>();
     points.add(new ColoredPoint(1, 2, Color.WHITE));
