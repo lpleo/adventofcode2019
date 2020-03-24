@@ -50,7 +50,7 @@ public class MoonServiceTest {
         .build();
 
     double energy = moonService.calcolateEnergy(moon);
-    assertThat(energy, is((3.0 * 3.0) + (2.0 * 3.0)));
+    assertThat(energy, is((3.0 * 3.0) * (2.0 * 3.0)));
   }
 
   @Test
