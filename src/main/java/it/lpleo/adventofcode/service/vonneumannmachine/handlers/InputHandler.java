@@ -3,7 +3,7 @@ package it.lpleo.adventofcode.service.vonneumannmachine.handlers;
 import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineService.getParameterMode;
 
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 
 public class InputHandler implements MoveHandler {
 
@@ -16,7 +16,7 @@ public class InputHandler implements MoveHandler {
   }
 
   @Override
-  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
+  public VonNeumannMachineOutput move(VonNeumannMachine vonNeumannMachine) {
     long cursor = vonNeumannMachine.getCursor();
     long position = vonNeumannMachine.getValue(cursor + 1);
     if (getParameterMode(vonNeumannMachine.getActualValue(), 0) == 2) {
@@ -26,7 +26,7 @@ public class InputHandler implements MoveHandler {
     long value = vonNeumannMachine.getNextInput();
     vonNeumannMachine.write(position, value);
     vonNeumannMachine.move(cursor + MOVE_PARAMETERS_NUMBER);
-    return HandlerOutput.builder().result(value).build();
+    return VonNeumannMachineOutput.builder().result(value).build();
   }
 
   @Override

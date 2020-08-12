@@ -4,7 +4,7 @@ import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineS
 import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineService.extractSecondParameter;
 
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 
 
 public class JumpIfTrueHandler implements MoveHandler {
@@ -19,15 +19,15 @@ public class JumpIfTrueHandler implements MoveHandler {
   }
 
   @Override
-  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
+  public VonNeumannMachineOutput move(VonNeumannMachine vonNeumannMachine) {
     long parameter1 = extractFirstParameter(vonNeumannMachine);
     if (parameter1 != 0) {
       long parameter2 = extractSecondParameter(vonNeumannMachine);
       vonNeumannMachine.move(parameter2);
-      return HandlerOutput.builder().result(1).build();
+      return VonNeumannMachineOutput.builder().result(1).build();
     }
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + MOVE_PARAMETERS_NUMBER);
-    return HandlerOutput.builder().result(0).build();
+    return VonNeumannMachineOutput.builder().result(0).build();
   }
 
   @Override

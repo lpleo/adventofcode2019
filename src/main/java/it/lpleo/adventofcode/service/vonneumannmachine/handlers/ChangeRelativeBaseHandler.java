@@ -3,8 +3,7 @@ package it.lpleo.adventofcode.service.vonneumannmachine.handlers;
 import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineService.extractFirstParameter;
 
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
-import it.lpleo.adventofcode.service.vonneumannmachine.handlers.MoveHandler;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 
 public class ChangeRelativeBaseHandler implements MoveHandler {
 
@@ -18,11 +17,11 @@ public class ChangeRelativeBaseHandler implements MoveHandler {
   }
 
   @Override
-  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
+  public VonNeumannMachineOutput move(VonNeumannMachine vonNeumannMachine) {
     long amount = extractFirstParameter(vonNeumannMachine);
     vonNeumannMachine.addAtRelativeCursor(amount);
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + MOVE_PARAMETERS_NUMBER);
-    return HandlerOutput.builder().result(amount).build();
+    return VonNeumannMachineOutput.builder().result(amount).build();
   }
 
   @Override

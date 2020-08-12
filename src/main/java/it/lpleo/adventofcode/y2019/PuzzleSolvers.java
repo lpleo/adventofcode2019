@@ -7,6 +7,7 @@ import it.lpleo.adventofcode.y2019.p1.RocketEquationPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p10.MonitoringStationPuzzleSolver;
 import it.lpleo.adventofcode.y2019.p11.SpacePolicePuzzleSolver;
 import it.lpleo.adventofcode.y2019.p12.NBodyProblemPuzzleSolver;
+import it.lpleo.adventofcode.y2019.p13.CarePackagePuzzleSolver;
 import it.lpleo.adventofcode.y2019.p2.Error1202PuzzleSolver;
 
 import it.lpleo.adventofcode.y2019.p3.CrossedWirePuzzleSolver;
@@ -35,6 +36,7 @@ public class PuzzleSolvers {
     puzzles2019.add(new MonitoringStationPuzzleSolver());
     puzzles2019.add(new SpacePolicePuzzleSolver());
     puzzles2019.add(new NBodyProblemPuzzleSolver());
+    puzzles2019.add(new CarePackagePuzzleSolver());
     return puzzles2019;
   }
 

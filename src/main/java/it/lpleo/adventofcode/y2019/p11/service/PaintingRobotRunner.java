@@ -7,7 +7,7 @@ import it.lpleo.adventofcode.y2019.p11.domain.ColoredPoint;
 import it.lpleo.adventofcode.y2019.p11.domain.Direction;
 import it.lpleo.adventofcode.y2019.p11.domain.PaintingRobot;
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 import it.lpleo.adventofcode.service.vonneumannmachine.handlers.MoveHandler;
 import java.util.Comparator;
 import java.util.List;
@@ -36,8 +36,8 @@ public class PaintingRobotRunner {
     while (vonNeumannMachine.hasNotFinished()) {
       vonNeumannMachine.addInputValue((long) paintingRobot.getPosition().getColor().getValue());
 
-      HandlerOutput colorHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
-      HandlerOutput directionHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
+      VonNeumannMachineOutput colorHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
+      VonNeumannMachineOutput directionHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
 
       paintingRobotService.colorPoint(paintingRobot, Color.byValue(colorHandler.getResult()));
       paintingRobotService.moveTo(paintingRobot,
@@ -75,7 +75,7 @@ public class PaintingRobotRunner {
     return stringBuilder.toString();
   }
 
-  private Direction calculateDirection(HandlerOutput directionHandler, Direction oldDirection) {
+  private Direction calculateDirection(VonNeumannMachineOutput directionHandler, Direction oldDirection) {
     return directionHandler.getResult() == 0
         ? directionService.turnLeft(oldDirection)
         : directionService.turnRight(oldDirection);

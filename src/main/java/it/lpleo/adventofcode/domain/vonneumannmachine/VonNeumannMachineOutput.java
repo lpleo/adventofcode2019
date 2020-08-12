@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HandlerOutput {
+public class VonNeumannMachineOutput {
   private boolean wait;
   private double result;
 }

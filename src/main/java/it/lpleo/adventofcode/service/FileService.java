@@ -10,22 +10,23 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileService {
-    private static FileService instance = null;
 
-    public static FileService getInstance() {
-        if (instance == null) {
-            instance = new FileService();
-        }
-        return instance;
-    }
+  private static FileService instance = null;
 
-    public List<String> readFile(String resourcePath) {
-        URL resource = this.getClass().getResource(resourcePath);
-        try {
-            Path path = Paths.get(resource.toURI());
-            return Files.readAllLines(path, StandardCharsets.UTF_8);
-        } catch (URISyntaxException | IOException e) {
-            throw new RuntimeException(e);
-        }
+  public static FileService getInstance() {
+    if (instance == null) {
+      instance = new FileService();
     }
+    return instance;
+  }
+
+  public List<String> readFile(String resourcePath) {
+    URL resource = this.getClass().getResource(resourcePath);
+    try {
+      Path path = Paths.get(resource.toURI());
+      return Files.readAllLines(path, StandardCharsets.UTF_8);
+    } catch (Exception e) {
+      throw new RuntimeException("Can not find file [" + resourcePath + "]", e);
+    }
+  }
 }

@@ -2,13 +2,12 @@ package it.lpleo.adventofcode.y2019.p5;
 
 import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.domain.PuzzleSolver;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
 import it.lpleo.adventofcode.service.InputManipulatorService;
 import it.lpleo.adventofcode.service.ListService;
 import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
 import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
@@ -23,10 +22,11 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
         InputManipulatorService.convertStringListInIntegersArray(inputList));
     HandlerList istance = HandlerList.getIstance();
     vonNeumannMachine.addInputValue(1L);
-    List<HandlerOutput> handlerOutputList = VonNeumannMachineRunner
+    List<VonNeumannMachineOutput> vonNeumannMachineOutputList = VonNeumannMachineRunner
         .run(vonNeumannMachine, istance.getHandlers());
-    HandlerOutput handlerOutput = ListService.getLast(handlerOutputList);
-    return handlerOutput != null ? handlerOutput.getResult() + "" : "Error";
+    VonNeumannMachineOutput vonNeumannMachineOutput = ListService.getLast(
+        vonNeumannMachineOutputList);
+    return vonNeumannMachineOutput != null ? vonNeumannMachineOutput.getResult() + "" : "Error";
   }
 
   @Override

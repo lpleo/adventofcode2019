@@ -3,7 +3,7 @@ package it.lpleo.adventofcode.y2019.p5;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
 import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
 import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
@@ -17,8 +17,8 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
   public void solvePart1InputOutputTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new long[]{3, 0, 4, 0, 99});
     vonNeumannMachine.addInputValue(6L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(6.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(6.0));
   }
 
   @Test
@@ -34,8 +34,8 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new long[]{3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8});
 
     vonNeumannMachine.addInputValue(8L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(1.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -44,8 +44,8 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new long[]{3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8});
 
     vonNeumannMachine.addInputValue(5L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(1.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -54,8 +54,8 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new long[]{3, 3, 1108, -1, 8, 3, 4, 3, 99});
 
     vonNeumannMachine.addInputValue(8L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(1.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -64,8 +64,8 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
         new long[]{3, 3, 1107, -1, 8, 3, 4, 3, 99});
 
     vonNeumannMachine.addInputValue(9L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(0.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(0.0));
   }
 
   @Test
@@ -76,18 +76,18 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
             999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99});
 
     vonNeumannMachine.addInputValue(7L);
-    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
-    assertThat(handlerOutput.getResult(), is(999.0));
+    VonNeumannMachineOutput vonNeumannMachineOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(vonNeumannMachineOutput.getResult(), is(999.0));
   }
 
 
-  private List<HandlerOutput> runMachine(VonNeumannMachine vonNeumannMachine) {
-    List<HandlerOutput> handlerOutputList = new ArrayList<>();
+  private List<VonNeumannMachineOutput> runMachine(VonNeumannMachine vonNeumannMachine) {
+    List<VonNeumannMachineOutput> vonNeumannMachineOutputList = new ArrayList<>();
     while (vonNeumannMachine.hasNotFinished()) {
-      HandlerOutput handlerOutput = VonNeumannMachineRunner
+      VonNeumannMachineOutput vonNeumannMachineOutput = VonNeumannMachineRunner
           .runAndStopOnOutput(vonNeumannMachine, HandlerList.getIstance().getHandlers());
-      handlerOutputList.add(handlerOutput);
+      vonNeumannMachineOutputList.add(vonNeumannMachineOutput);
     }
-    return handlerOutputList;
+    return vonNeumannMachineOutputList;
   }
 }

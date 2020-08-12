@@ -5,7 +5,7 @@ import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineS
 import static it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineService.extractSecondParameter;
 
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 
 
 public class SumHandler implements MoveHandler {
@@ -20,13 +20,13 @@ public class SumHandler implements MoveHandler {
   }
 
   @Override
-  public HandlerOutput move(VonNeumannMachine vonNeumannMachine) {
+  public VonNeumannMachineOutput move(VonNeumannMachine vonNeumannMachine) {
     long parameter1 = extractFirstParameter(vonNeumannMachine);
     long parameter2 = extractSecondParameter(vonNeumannMachine);
     long result = extractCursorFromData(vonNeumannMachine,2);
     vonNeumannMachine.write(result, parameter1 + parameter2);
     vonNeumannMachine.move(vonNeumannMachine.getCursor() + MOVE_PARAMETERS_NUMBER);
-    return HandlerOutput.builder().result(parameter1 + parameter2).build();
+    return VonNeumannMachineOutput.builder().result(parameter1 + parameter2).build();
   }
 
   @Override

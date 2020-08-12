@@ -1,13 +1,13 @@
 package it.lpleo.adventofcode.service.vonneumannmachine.handlers;
 
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
-import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachineOutput;
 
 public interface MoveHandler {
 
   boolean shouldHandle(long moveValue);
 
-  HandlerOutput move(VonNeumannMachine vonNeumannMachine);
+  VonNeumannMachineOutput move(VonNeumannMachine vonNeumannMachine);
 
   long getIndex();
 }
