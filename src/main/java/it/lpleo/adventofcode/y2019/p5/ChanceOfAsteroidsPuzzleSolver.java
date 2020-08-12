@@ -5,8 +5,10 @@ import it.lpleo.adventofcode.domain.PuzzleSolver;
 import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
 import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
 import it.lpleo.adventofcode.service.InputManipulatorService;
+import it.lpleo.adventofcode.service.ListService;
 import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
 import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
@@ -21,11 +23,9 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
         InputManipulatorService.convertStringListInIntegersArray(inputList));
     HandlerList istance = HandlerList.getIstance();
     vonNeumannMachine.addInputValue(1L);
-    HandlerOutput handlerOutput = null;
-    while(vonNeumannMachine.hasNotFinished()) {
-      handlerOutput = VonNeumannMachineRunner
-          .run(vonNeumannMachine, istance.getHandlers());
-    }
+    List<HandlerOutput> handlerOutputList = VonNeumannMachineRunner
+        .run(vonNeumannMachine, istance.getHandlers());
+    HandlerOutput handlerOutput = ListService.getLast(handlerOutputList);
     return handlerOutput != null ? handlerOutput.getResult() + "" : "Error";
   }
 
@@ -35,12 +35,9 @@ public class ChanceOfAsteroidsPuzzleSolver extends PuzzleSolver {
         InputManipulatorService.convertStringListInIntegersArray(inputList));
     HandlerList istance = HandlerList.getIstance();
     vonNeumannMachine.addInputValue(5L);
-    HandlerOutput handlerOutput = null;
-    while(vonNeumannMachine.hasNotFinished()) {
-      handlerOutput = VonNeumannMachineRunner
-          .run(vonNeumannMachine, istance.getHandlers());
-    }
-    return handlerOutput != null ? handlerOutput.getResult() + "" : "Error";
+    VonNeumannMachineRunner.run(vonNeumannMachine, istance.getHandlers());
+    Long lastOutput = vonNeumannMachine.getFirstOutputIfExist();
+    return lastOutput != null ? lastOutput + "" : "Error";
   }
 }
 

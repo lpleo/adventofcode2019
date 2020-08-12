@@ -36,8 +36,8 @@ public class PaintingRobotRunner {
     while (vonNeumannMachine.hasNotFinished()) {
       vonNeumannMachine.addInputValue((long) paintingRobot.getPosition().getColor().getValue());
 
-      HandlerOutput colorHandler = VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
-      HandlerOutput directionHandler = VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
+      HandlerOutput colorHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
+      HandlerOutput directionHandler = VonNeumannMachineRunner.runAndStopOnOutput(vonNeumannMachine, handlers);
 
       paintingRobotService.colorPoint(paintingRobot, Color.byValue(colorHandler.getResult()));
       paintingRobotService.moveTo(paintingRobot,

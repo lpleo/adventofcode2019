@@ -20,8 +20,8 @@ public class AmplificationCircuitPuzzleHelper {
         permutation)) {
       vonNeumannMachine.addInputValue(nextInput);
       VonNeumannMachineRunner
-          .run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
-      nextInput = vonNeumannMachine.getLastOutputIfExist();
+          .runAndStopOnOutput(vonNeumannMachine, HandlerList.getIstance().getHandlers());
+      nextInput = vonNeumannMachine.getFirstOutputIfExist();
     }
 
     return nextInput;
@@ -38,9 +38,9 @@ public class AmplificationCircuitPuzzleHelper {
       runningVonNeumannMachine.addInputValue(lastOutput);
 
       VonNeumannMachineRunner
-          .run(runningVonNeumannMachine, HandlerList.getIstance().getHandlers());
+          .runAndStopOnOutput(runningVonNeumannMachine, HandlerList.getIstance().getHandlers());
 
-      lastOutput = runningVonNeumannMachine.getLastOutputIfExist();
+      lastOutput = runningVonNeumannMachine.getFirstOutputIfExist();
       lastValidOutput = (lastOutput != null) ? lastOutput : lastValidOutput;
       runningVonNeumannMachine = selectNextMachine(runningVonNeumannMachine,
           vonNeumannMachineList);

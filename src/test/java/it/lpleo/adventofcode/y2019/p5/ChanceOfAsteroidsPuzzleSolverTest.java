@@ -85,7 +85,7 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     List<HandlerOutput> handlerOutputList = new ArrayList<>();
     while (vonNeumannMachine.hasNotFinished()) {
       HandlerOutput handlerOutput = VonNeumannMachineRunner
-          .run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
+          .runAndStopOnOutput(vonNeumannMachine, HandlerList.getIstance().getHandlers());
       handlerOutputList.add(handlerOutput);
     }
     return handlerOutputList;

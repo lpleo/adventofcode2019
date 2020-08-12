@@ -34,10 +34,7 @@ public class SensorBoostPuzzleSolver extends PuzzleSolver {
   private String solvePart(List<String> inputList, LinkedList<Long> inputValues) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         convertStringListInIntegersArray(inputList), inputValues, new LinkedList<>());
-    while(vonNeumannMachine.hasNotFinished()) {
-      VonNeumannMachineRunner
-          .run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
-    }
+    VonNeumannMachineRunner.run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
     return convertStringCollectionInString(vonNeumannMachine.getOutputValues(), ',');
   }
 }

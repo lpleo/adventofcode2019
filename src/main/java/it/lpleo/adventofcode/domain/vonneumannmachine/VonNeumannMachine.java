@@ -90,7 +90,7 @@ public class VonNeumannMachine {
     throw new RuntimeException("There are no input left");
   }
 
-  public Long getLastOutputIfExist() {
+  public Long getFirstOutputIfExist() {
     if (this.outputValues.size() > 0) {
       return this.outputValues.poll();
     }
