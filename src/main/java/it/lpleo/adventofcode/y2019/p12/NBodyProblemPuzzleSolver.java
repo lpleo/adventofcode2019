@@ -13,9 +13,9 @@ public class NBodyProblemPuzzleSolver extends PuzzleSolver {
     super(new Puzzle(12, 2019, "NBodyProblem"));
   }
 
-  private CombinationService combinationService = CombinationService.getIstance();
-  private MoonService moonService = MoonService.getIstance();
-  private NBodyProblemHelper nBodyProblemHelper = NBodyProblemHelper.getIstance();
+  private final CombinationService combinationService = CombinationService.getIstance();
+  private final MoonService moonService = MoonService.getIstance();
+  private final NBodyProblemHelper nBodyProblemHelper = NBodyProblemHelper.getIstance();
 
   @Override
   public String solvePart1(List<String> inputList) {

@@ -2,20 +2,11 @@ package it.lpleo.adventofcode.y2019.p7;
 
 import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringListInIntegersArray;
 import static java.lang.Character.getNumericValue;
-import static java.util.Arrays.asList;
 
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
 import it.lpleo.adventofcode.service.InputManipulatorService;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfFalseHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfTrueHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.LessThanHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.MoveHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
-import it.lpleo.adventofcode.y2019.p7.domain.InputFromVonNeumannMachineHandler;
-import it.lpleo.adventofcode.y2019.p7.domain.OutputFromVonNeumannMachineHandler;
+import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
+import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,17 +14,13 @@ import java.util.Queue;
 
 public class AmplificationCircuitPuzzleHelper {
 
-  private static List<MoveHandler> handlers = asList(new SumHandler(),
-      new MultiplicationHandler(), new EqualsHandler(), new LessThanHandler(),
-      new JumpIfFalseHandler(), new JumpIfTrueHandler(), new InputFromVonNeumannMachineHandler(),
-      new OutputFromVonNeumannMachineHandler(), new ErrorHandler());
-
   public static long runMachinesForPermutationsPT1(List<String> inputList, String permutation) {
     long nextInput = 0;
     for (VonNeumannMachine vonNeumannMachine : generateVonNeumannMachines(inputList,
         permutation)) {
       vonNeumannMachine.addInputValue(nextInput);
-      StoppableVonNeumannMachineRunner.run(vonNeumannMachine, handlers);
+      VonNeumannMachineRunner
+          .run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
       nextInput = vonNeumannMachine.getLastOutputIfExist();
     }
 
@@ -50,8 +37,8 @@ public class AmplificationCircuitPuzzleHelper {
     while (!lastMachineHasEnded(vonNeumannMachineList)) {
       runningVonNeumannMachine.addInputValue(lastOutput);
 
-      StoppableVonNeumannMachineRunner
-          .runStoppableMachine(runningVonNeumannMachine, handlers);
+      VonNeumannMachineRunner
+          .run(runningVonNeumannMachine, HandlerList.getIstance().getHandlers());
 
       lastOutput = runningVonNeumannMachine.getLastOutputIfExist();
       lastValidOutput = (lastOutput != null) ? lastOutput : lastValidOutput;

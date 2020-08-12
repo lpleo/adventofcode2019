@@ -8,7 +8,7 @@ import it.lpleo.adventofcode.y2019.p11.domain.Color;
 import it.lpleo.adventofcode.y2019.p11.domain.PaintingRobot;
 import it.lpleo.adventofcode.y2019.p11.service.DirectionService;
 import it.lpleo.adventofcode.y2019.p11.service.PaintingRobotRunner;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
 import java.util.List;
 
 public class SpacePolicePuzzleSolver extends PuzzleSolver {

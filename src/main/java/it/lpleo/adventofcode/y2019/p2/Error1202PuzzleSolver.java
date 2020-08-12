@@ -6,29 +6,29 @@ import static java.util.Arrays.asList;
 import it.lpleo.adventofcode.domain.PuzzleSolver;
 import it.lpleo.adventofcode.domain.Puzzle;
 import it.lpleo.adventofcode.service.InputManipulatorService;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachineRunner;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.ErrorHandler;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MoveHandler;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.MultiplicationHandler;
-import it.lpleo.adventofcode.y2019.p2.domain.handler.SumHandler;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
+import it.lpleo.adventofcode.y2019.p2.domain.DeprecatedVNMH;
+import it.lpleo.adventofcode.y2019.p2.domain.handler.DeprecatedEH;
+import it.lpleo.adventofcode.y2019.p2.domain.handler.DeprecatedMH;
+import it.lpleo.adventofcode.y2019.p2.domain.handler.DeprecatedMLH;
+import it.lpleo.adventofcode.y2019.p2.domain.handler.DeprecatedSH;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Error1202PuzzleSolver extends PuzzleSolver {
 
-  private List<MoveHandler> handlers;
+  private List<DeprecatedMH> handlers;
 
   public Error1202PuzzleSolver() {
     super(new Puzzle(2, 2019, "Error1202"));
-    handlers = asList(new SumHandler(), new MultiplicationHandler(), new ErrorHandler());
+    handlers = asList(new DeprecatedSH(), new DeprecatedMLH(), new DeprecatedEH());
   }
 
   @Override
   public String solvePart1(List<String> inputList) {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         InputManipulatorService.convertStringListInIntegersArray(inputList));
-    VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
+    DeprecatedVNMH.run(vonNeumannMachine, handlers);
     return vonNeumannMachine.getValue(0) + "";
   }
 

@@ -1,61 +1,30 @@
 package it.lpleo.adventofcode.y2019.p5;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.ErrorHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.MoveHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.EqualsHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.InputHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfFalseHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.JumpIfTrueHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.LessThanHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.MultiplicationHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.OutputHandler;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.SumHandler;
-import it.lpleo.adventofcode.y2019.p7.StoppableVonNeumannMachineRunner;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.LinkedList;
+import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
+import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
+import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class ChanceOfAsteroidsPuzzleSolverTest {
 
-  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  private final PrintStream originalOut = System.out;
-
-  @Before
-  public void setUpStreams() {
-    System.setOut(new PrintStream(outContent));
-  }
-
-  @After
-  public void restoreStreams() {
-    System.setOut(originalOut);
-  }
-
   @Test
   public void solvePart1InputOutputTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new long[]{3, 0, 4, 0, 99});
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(6L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine,
-        asList(new InputHandler(fifoQueue), new OutputHandler(fifoQueue), new ErrorHandler()));
-
-    assertThat(fifoQueue.poll(), is(6L));
+    vonNeumannMachine.addInputValue(6L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(6.0));
   }
 
   @Test
   public void solvePart1ParameterImmediateModeTest() {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(new long[]{1002, 4, 3, 4, 33});
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine,
-        asList(new MultiplicationHandler(), new ErrorHandler()));
-
+    runMachine(vonNeumannMachine);
     assertThat(vonNeumannMachine.getValue(4), is(99L));
   }
 
@@ -64,10 +33,9 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8});
 
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(8L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
-
-    assertThat(fifoQueue.poll(), is(1L));
+    vonNeumannMachine.addInputValue(8L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -75,10 +43,9 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8});
 
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(5L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
-
-    assertThat(fifoQueue.poll(), is(1L));
+    vonNeumannMachine.addInputValue(5L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -86,10 +53,9 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{3, 3, 1108, -1, 8, 3, 4, 3, 99});
 
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(8L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
-
-    assertThat(fifoQueue.poll(), is(1L));
+    vonNeumannMachine.addInputValue(8L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(1.0));
   }
 
   @Test
@@ -97,10 +63,9 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(
         new long[]{3, 3, 1107, -1, 8, 3, 4, 3, 99});
 
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(9L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
-
-    assertThat(fifoQueue.poll(), is(0L));
+    vonNeumannMachine.addInputValue(9L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(0.0));
   }
 
   @Test
@@ -110,20 +75,19 @@ public class ChanceOfAsteroidsPuzzleSolverTest {
             1106, 0, 36, 98, 0, 0, 1002, 21, 125, 20, 4, 20, 1105, 1, 46, 104,
             999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99});
 
-    LinkedList<Long> fifoQueue = new LinkedList<>(singletonList(7L));
-    StoppableVonNeumannMachineRunner.run(vonNeumannMachine, getPT2Handlers(fifoQueue));
-
-    assertThat(fifoQueue.poll(), is(999L));
+    vonNeumannMachine.addInputValue(7L);
+    HandlerOutput handlerOutput = runMachine(vonNeumannMachine).get(0);
+    assertThat(handlerOutput.getResult(), is(999.0));
   }
 
 
-  private List<MoveHandler> getPT2Handlers(LinkedList<Long> fifoqueue) {
-    return asList(new SumHandler(),
-        new MultiplicationHandler(),
-        new InputHandler(fifoqueue),
-        new OutputHandler(fifoqueue), new EqualsHandler(), new JumpIfFalseHandler(),
-        new JumpIfTrueHandler(),
-        new LessThanHandler(), new ErrorHandler());
+  private List<HandlerOutput> runMachine(VonNeumannMachine vonNeumannMachine) {
+    List<HandlerOutput> handlerOutputList = new ArrayList<>();
+    while (vonNeumannMachine.hasNotFinished()) {
+      HandlerOutput handlerOutput = VonNeumannMachineRunner
+          .run(vonNeumannMachine, HandlerList.getIstance().getHandlers());
+      handlerOutputList.add(handlerOutput);
+    }
+    return handlerOutputList;
   }
-
 }

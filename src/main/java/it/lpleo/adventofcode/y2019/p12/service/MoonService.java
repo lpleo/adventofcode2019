@@ -3,7 +3,6 @@ package it.lpleo.adventofcode.y2019.p12.service;
 import static java.lang.Double.parseDouble;
 import static java.lang.Math.*;
 
-import com.sun.deploy.util.StringUtils;
 import it.lpleo.adventofcode.domain.geometry.I3DPoint;
 import it.lpleo.adventofcode.domain.geometry.ThreeDimensionalPoint;
 import it.lpleo.adventofcode.y2019.p12.domain.Moon;

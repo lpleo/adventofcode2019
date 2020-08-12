@@ -1,15 +1,14 @@
 package it.lpleo.adventofcode.y2019.p11.service;
 
-import static it.lpleo.adventofcode.y2019.p7.StoppableVonNeumannMachineRunner.runStoppableMachine;
-
-import it.lpleo.adventofcode.domain.HandlerList;
+import it.lpleo.adventofcode.service.vonneumannmachine.HandlerList;
+import it.lpleo.adventofcode.service.vonneumannmachine.VonNeumannMachineRunner;
 import it.lpleo.adventofcode.y2019.p11.domain.Color;
 import it.lpleo.adventofcode.y2019.p11.domain.ColoredPoint;
 import it.lpleo.adventofcode.y2019.p11.domain.Direction;
 import it.lpleo.adventofcode.y2019.p11.domain.PaintingRobot;
-import it.lpleo.adventofcode.y2019.p2.domain.VonNeumannMachine;
-import it.lpleo.adventofcode.y2019.p5.domain.HandlerOutput;
-import it.lpleo.adventofcode.y2019.p5.domain.handler.MoveHandler;
+import it.lpleo.adventofcode.domain.vonneumannmachine.VonNeumannMachine;
+import it.lpleo.adventofcode.domain.vonneumannmachine.HandlerOutput;
+import it.lpleo.adventofcode.service.vonneumannmachine.handlers.MoveHandler;
 import java.util.Comparator;
 import java.util.List;
 
@@ -37,8 +36,8 @@ public class PaintingRobotRunner {
     while (vonNeumannMachine.hasNotFinished()) {
       vonNeumannMachine.addInputValue((long) paintingRobot.getPosition().getColor().getValue());
 
-      HandlerOutput colorHandler = runStoppableMachine(vonNeumannMachine, handlers);
-      HandlerOutput directionHandler = runStoppableMachine(vonNeumannMachine, handlers);
+      HandlerOutput colorHandler = VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
+      HandlerOutput directionHandler = VonNeumannMachineRunner.run(vonNeumannMachine, handlers);
 
       paintingRobotService.colorPoint(paintingRobot, Color.byValue(colorHandler.getResult()));
       paintingRobotService.moveTo(paintingRobot,
