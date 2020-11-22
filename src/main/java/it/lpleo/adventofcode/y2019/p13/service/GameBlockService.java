@@ -8,6 +8,7 @@ import it.lpleo.adventofcode.y2019.p13.domain.GameBlock;
 import it.lpleo.adventofcode.y2019.p13.domain.GameBlockTitleId;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class GameBlockService {
 
@@ -15,6 +16,32 @@ public class GameBlockService {
   public static final Character BREAKABLE_BLOCK = 'B';
   public static final Character PAD_BLOCK = '_';
   public static final Character BALL_BLOCK = '0';
+
+  public static void updateGameField(GameBlock gameBlock, List<GameBlock> gameBlockList) {
+    Optional<GameBlock> first = gameBlockList.stream()
+        .filter(internalGameBlock -> (internalGameBlock.getX() == gameBlock.getX()
+            && internalGameBlock.getY() == gameBlock.getY())).findFirst();
+
+    if (GameBlockTitleId.isPad(gameBlock.getTitleId().getValue())) {
+      gameBlockList.stream().filter(
+          internalGameBlock -> GameBlockTitleId.isPad(internalGameBlock.getTitleId().getValue()))
+          .findFirst()
+          .ifPresent(interalGameBlock -> interalGameBlock.setTitleId(GameBlockTitleId.VOID));
+    }
+
+    if (GameBlockTitleId.isBall(gameBlock.getTitleId().getValue())) {
+      gameBlockList.stream().filter(
+          internalGameBlock -> GameBlockTitleId.isBall(internalGameBlock.getTitleId().getValue()))
+          .findFirst()
+          .ifPresent(interalGameBlock -> interalGameBlock.setTitleId(GameBlockTitleId.VOID));
+    }
+
+    if (first.isPresent()) {
+      first.get().setTitleId(gameBlock.getTitleId());
+    } else {
+      gameBlockList.add(gameBlock);
+    }
+  }
 
   public static Character[][] generateGameField(List<GameBlock> gameBlockList) {
     int xMax = (int) gameBlockList.stream().max(comparingDouble(GameBlock::getX))

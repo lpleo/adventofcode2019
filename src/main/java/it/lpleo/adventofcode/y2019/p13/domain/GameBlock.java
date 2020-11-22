@@ -2,6 +2,7 @@ package it.lpleo.adventofcode.y2019.p13.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
@@ -9,5 +10,6 @@ public class GameBlock {
 
   private final double x;
   private final double y;
-  private final GameBlockTitleId titleId;
+  @Setter
+  private GameBlockTitleId titleId;
 }

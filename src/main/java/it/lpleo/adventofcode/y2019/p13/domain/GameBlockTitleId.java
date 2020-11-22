@@ -26,4 +26,7 @@ public enum GameBlockTitleId {
     return titleId == BALL.getValue();
   }
 
+  public static boolean isPad(double titleId) {
+    return titleId == PAD.getValue();
+  }
 }
