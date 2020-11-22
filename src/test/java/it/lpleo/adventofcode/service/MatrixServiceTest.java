@@ -9,7 +9,7 @@ import org.junit.Test;
 public class MatrixServiceTest {
 
   @Test
-  public void initializeMatrixTest() {
+  public void initializeMatrix() {
     Integer[][] matrix = new Integer[3][2];
     MatrixService.initializeMatrix(matrix, 5);
     for (Integer[] integers : matrix) {
@@ -20,9 +20,23 @@ public class MatrixServiceTest {
   }
 
   @Test
-  public void printMatrixTest() {
+  public void printMatrix() {
     Integer[][] matrix = new Integer[][]{{3, 2, 1}, {4, 5, 6}};
     String result = MatrixService.printMatrix(matrix);
-    assertThat(result,is("\n|3|2|1|\n|4|5|6|\n"));
+    assertThat(result, is("\n|3|2|1|\n|4|5|6|\n"));
+  }
+
+  @Test
+  public void getLength() {
+    Integer[][] matrix = new Integer[][]{{3, 2, 1}, {4, 5, 6}};
+    int result = MatrixService.getLength(matrix);
+    assertThat(result, is(3));
+  }
+
+  @Test
+  public void getHeight() {
+    Integer[][] matrix = new Integer[][]{{3, 2, 1}, {4, 5, 6}};
+    int result = MatrixService.getHeight(matrix);
+    assertThat(result, is(2));
   }
 }

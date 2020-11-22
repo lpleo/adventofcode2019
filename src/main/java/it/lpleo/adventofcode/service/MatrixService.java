@@ -1,5 +1,6 @@
 package it.lpleo.adventofcode.service;
 
+import it.lpleo.adventofcode.domain.geometry.Point;
 import java.util.Arrays;
 
 public class MatrixService {
@@ -8,6 +9,14 @@ public class MatrixService {
     for (T[] row : matrix) {
       Arrays.fill(row, value);
     }
+  }
+
+  public static <T> int getLength(T[][] matrix) {
+    return matrix[0].length;
+  }
+
+  public static <T> int getHeight(T[][] matrix) {
+    return matrix.length;
   }
 
   public static <T> String printMatrix(T[][] matrix) {

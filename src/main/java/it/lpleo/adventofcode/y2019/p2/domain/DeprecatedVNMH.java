@@ -13,7 +13,7 @@ public class DeprecatedVNMH {
     while (vonNeumannMachine.getActualValue() != 99) {
       for (DeprecatedMH moveHandler : handlers) {
         boolean shouldHandle = moveHandler.shouldHandle(
-            VonNeumannMachineService.decodeMoveValue(vonNeumannMachine.getActualValue()));
+            VonNeumannMachineService.decodeNextMoveValue(vonNeumannMachine));
         if (shouldHandle) {
           moveHandler.move(vonNeumannMachine);
           break;

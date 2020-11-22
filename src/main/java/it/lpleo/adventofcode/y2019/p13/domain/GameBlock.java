@@ -9,5 +9,5 @@ public class GameBlock {
 
   private final double x;
   private final double y;
-  private final double titleId;
+  private final GameBlockTitleId titleId;
 }

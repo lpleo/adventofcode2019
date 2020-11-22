@@ -47,7 +47,8 @@ public class VonNeumannMachineService {
     return targetCursor;
   }
 
-  public static long decodeMoveValue(long encodedInstruction) {
+  public static long decodeNextMoveValue(VonNeumannMachine vonNeumannMachine) {
+    long encodedInstruction = vonNeumannMachine.getActualValue();
     String instruction = encodedInstruction + "";
     if (instruction.length() == 1) {
       return parseInt(instruction);
