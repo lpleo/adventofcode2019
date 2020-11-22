@@ -1,7 +1,6 @@
 package it.lpleo.adventofcode.y2019.p13;
 
 import static it.lpleo.adventofcode.service.InputManipulatorService.convertStringListInIntegersArray;
-import static it.lpleo.adventofcode.service.MatrixService.printMatrix;
 import static it.lpleo.adventofcode.y2019.p13.service.GameBlockService.countBlocks;
 import static it.lpleo.adventofcode.y2019.p13.service.GameBlockService.generateGameField;
 
@@ -52,26 +51,7 @@ public class CarePackagePuzzleSolver extends PuzzleSolver {
     VonNeumannMachine vonNeumannMachine = new VonNeumannMachine(instructions);
 
     double actualPoints = 0.0;
-    List<GameBlock> gameBlockList = new ArrayList<>();
-    boolean showPoint = false;
-    while (!showPoint) {
-      VonNeumannMachineOutput xPosition = VonNeumannMachineRunner
-          .runAndStopOnOutput(vonNeumannMachine, handlers);
-      VonNeumannMachineOutput yPosition = VonNeumannMachineRunner
-          .runAndStopOnOutput(vonNeumannMachine, handlers);
-      VonNeumannMachineOutput titleId = VonNeumannMachineRunner
-          .runAndStopOnOutput(vonNeumannMachine, handlers);
-      showPoint = xPosition.getResult() == -1.0 && yPosition.getResult() == 0.0;
-      if (!showPoint) {
-        gameBlockList.add(GameBlock.builder().x(xPosition.getResult()).y(yPosition.getResult())
-            .titleId(GameBlockTitleId.byTitleId(titleId.getResult())).build());
-      } else {
-        actualPoints = titleId.getResult();
-      }
-    }
-
-    System.out
-        .println(printMatrix(generateGameField(gameBlockList)));
+    List<GameBlock> gameBlockList = generateField(handlers, vonNeumannMachine);
     MoveInputGenerator moveInputGenerator = new MoveInputGenerator(
         generateGameField(gameBlockList));
     gameBlockList = new ArrayList<>();
@@ -84,7 +64,7 @@ public class CarePackagePuzzleSolver extends PuzzleSolver {
       VonNeumannMachineOutput titleId = VonNeumannMachineRunner
           .runAndStopOnOutput(vonNeumannMachine, handlers, moveInputGenerator);
 
-      showPoint = xPosition.getResult() == -1.0 && yPosition.getResult() == 0.0;
+      boolean showPoint = xPosition.getResult() == -1.0 && yPosition.getResult() == 0.0;
       if (!showPoint) {
         gameBlockList.add(GameBlock.builder().x(xPosition.getResult()).y(yPosition.getResult())
             .titleId(GameBlockTitleId.byTitleId(titleId.getResult())).build());
@@ -98,5 +78,25 @@ public class CarePackagePuzzleSolver extends PuzzleSolver {
 
     }
     return actualPoints + "";
+  }
+  
+  private List<GameBlock> generateField(List<MoveHandler> handlers,
+      VonNeumannMachine vonNeumannMachine) {
+    List<GameBlock> gameBlockList = new ArrayList<>();
+    boolean showPoint = false;
+    while (!showPoint) {
+      VonNeumannMachineOutput xPosition = VonNeumannMachineRunner
+          .runAndStopOnOutput(vonNeumannMachine, handlers);
+      VonNeumannMachineOutput yPosition = VonNeumannMachineRunner
+          .runAndStopOnOutput(vonNeumannMachine, handlers);
+      VonNeumannMachineOutput titleId = VonNeumannMachineRunner
+          .runAndStopOnOutput(vonNeumannMachine, handlers);
+      showPoint = xPosition.getResult() == -1.0 && yPosition.getResult() == 0.0;
+      if (!showPoint) {
+        gameBlockList.add(GameBlock.builder().x(xPosition.getResult()).y(yPosition.getResult())
+            .titleId(GameBlockTitleId.byTitleId(titleId.getResult())).build());
+      }
+    }
+    return gameBlockList;
   }
 }

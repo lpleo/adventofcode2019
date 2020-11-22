@@ -6,13 +6,9 @@ import it.lpleo.adventofcode.y2019.p13.service.GameBlockService;
 
 public class MoveInputGenerator implements InputGenerator {
 
-  private Character[][] gameField;
+  private final Character[][] gameField;
 
   public MoveInputGenerator(Character[][] gameField) {
-    this.gameField = gameField;
-  }
-
-  public void setGameField(Character[][] gameField) {
     this.gameField = gameField;
   }
 
